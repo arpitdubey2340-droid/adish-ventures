@@ -83,7 +83,7 @@ export default function Cart() {
     setCartItems(newItems);
 
     // Update localStorage
-    const updatedCart = [];
+    const updatedCart: Array<{ id: string; name: string; price: number }> = [];
     newItems.forEach(item => {
       for (let i = 0; i < item.quantity; i++) {
         updatedCart.push({
