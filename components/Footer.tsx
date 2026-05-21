@@ -49,11 +49,11 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-start space-x-2">
                 <Phone size={16} className="text-yellow-400 mt-1 flex-shrink-0" />
-                <a href="tel:+919876543210" className="text-yellow-50 hover:text-yellow-300 transition">+91 98765 43210</a>
+                <a href="tel:+919560300777" className="text-yellow-50 hover:text-yellow-300 transition">+91 9560300777</a>
               </div>
               <div className="flex items-start space-x-2">
                 <Mail size={16} className="text-yellow-400 mt-1 flex-shrink-0" />
-                <a href="mailto:hello@ojusaadish.com" className="text-yellow-50 hover:text-yellow-300 transition">hello@ojusaadish.com</a>
+                <a href="mailto:adishventures@outlook.com" className="text-yellow-50 hover:text-yellow-300 transition">adishventures@outlook.com</a>
               </div>
               <div className="flex items-start space-x-2">
                 <MapPin size={16} className="text-yellow-400 mt-1 flex-shrink-0" />

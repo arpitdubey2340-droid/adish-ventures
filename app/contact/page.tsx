@@ -136,8 +136,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-adish-dark mb-1">Phone</h3>
-                    <a href="tel:+919876543210" className="text-adish-green hover:text-adish-gold transition-colors">
-                      +91 98765 43210
+                    <a href="tel:+919560300777" className="text-adish-green hover:text-adish-gold transition-colors">
+                      +91 9560300777
                     </a>
                   </div>
                 </div>
@@ -151,8 +151,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-adish-dark mb-1">Email</h3>
-                    <a href="mailto:hello@ojusaadish.com" className="text-adish-green hover:text-adish-gold transition-colors">
-                      hello@ojusaadish.com
+                    <a href="mailto:adishventures@outlook.com" className="text-adish-green hover:text-adish-gold transition-colors">
+                      adishventures@outlook.com
                     </a>
                   </div>
                 </div>
@@ -166,8 +166,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-adish-dark mb-1">WhatsApp</h3>
-                    <a href="https://wa.me/919876543210" className="text-adish-green hover:text-adish-gold transition-colors">
-                      +91 98765 43210
+                    <a href="https://wa.me/919560300777" className="text-adish-green hover:text-adish-gold transition-colors">
+                      +91 9560300777
                     </a>
                   </div>
                 </div>
