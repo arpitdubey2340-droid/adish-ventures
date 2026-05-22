@@ -56,12 +56,12 @@ Multi-System Benefits:
   },
   {
     id: "performance-tincture",
-    name: "Performance Tincture",
+    name: "Cordyceps Endurance Tincture",
     category: "Tincture",
     price: 1000,
     description: "Sublingual dual-extract for rapid, sustained performance enhancement",
-    image: "/images/products/tincture-real.avif",
-    imageAlt: "Performance Tincture",
+    image: "/images/tincture-bottle.jpeg",
+    imageAlt: "Cordyceps Endurance Tincture",
     benefits: [
       "2-5 mins rapid absorption",
       "High bioavailability - Bypasses digestion",
@@ -117,7 +117,7 @@ export const faqItems = [
   },
   {
     question: "Is this suitable for athletes?",
-    answer: "Yes. Our Performance Tincture is specifically engineered for athletes seeking enhanced V02 max, lactate threshold improvement, and post-exercise recovery without synthetic performance enhancers.",
+    answer: "Yes. Our Cordyceps Endurance Tincture is specifically engineered for athletes seeking enhanced V02 max, lactate threshold improvement, and post-exercise recovery without synthetic performance enhancers.",
   },
   {
     question: "How should I store these?",

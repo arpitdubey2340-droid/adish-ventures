@@ -42,7 +42,7 @@ export default function Products() {
               // Use your product images
               const heroImages = [
                 '/images/products/powder.avif', // Cordyceps Potency Powder
-                '/images/products/tincture-real.avif' // Performance Tincture
+                '/images/tincture-bottle.jpeg' // Cordyceps Endurance Tincture
               ];
               return (
               <div key={product.id} className="border-2 border-adish-beige rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -175,7 +175,7 @@ export default function Products() {
               </div>
 
               <div className="bg-white border-2 border-adish-beige rounded-lg p-8">
-                <h3 className="text-2xl font-bold text-adish-dark mb-6">Performance Tincture</h3>
+                <h3 className="text-2xl font-bold text-adish-dark mb-6">Cordyceps Endurance Tincture</h3>
 
                 <div className="mb-6">
                   <h4 className="font-bold text-adish-dark mb-3">Best For:</h4>

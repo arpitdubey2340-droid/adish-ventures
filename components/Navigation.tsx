@@ -25,7 +25,7 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition">
             <img
-              src="/images/branding/logo.png"
+              src="/images/logo-new.png"
               alt="Adish Ventures Logo"
               className="h-10 w-10 object-contain"
             />

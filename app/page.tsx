@@ -37,8 +37,9 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8">
           <div className="max-w-2xl">
             <div className="mb-6">
+              <img src="/images/logo-new.png" alt="Adish Ventures Logo" className="h-16 mb-4" />
               <span className="inline-block bg-yellow-600 bg-opacity-95 text-white px-6 py-3 rounded-full text-sm font-bold mb-4 shadow-xl" style={{ color: '#1B4D3E' }}>
-                REDEFINING BOTANICAL VITALITY
+                ADISH VENTURES
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight" style={{
@@ -92,13 +93,13 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Powder */}
             <div className="bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all">
-              <div className="h-64 bg-gray-100 overflow-hidden">
+              <Link href="/products" className="h-64 bg-gray-100 overflow-hidden block cursor-pointer">
                 <img
                   src="/images/products/powder.avif"
                   alt="Cordyceps Potency Powder"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
-              </div>
+              </Link>
               <div className="p-8">
                 <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
                   Cordyceps Potency Powder
@@ -140,16 +141,16 @@ export default function Home() {
 
             {/* Tincture */}
             <div style={{ background: 'linear-gradient(135deg, #e8dcc8 0%, #f5f1e8 100%)' }} className="border-2 border-yellow-600 rounded-lg overflow-hidden hover:shadow-lg transition-all">
-              <div className="h-64 bg-gray-100 overflow-hidden">
+              <Link href="/products" className="h-64 bg-gray-100 overflow-hidden block cursor-pointer">
                 <img
-                  src="/images/products/tincture-real.avif"
-                  alt="Performance Tincture"
+                  src="/images/tincture-bottle.jpeg"
+                  alt="Cordyceps Endurance Tincture"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
-              </div>
+              </Link>
               <div className="p-8">
                 <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
-                  Performance Tincture
+                  Cordyceps Endurance Tincture
                 </h3>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-start gap-3">
@@ -177,7 +178,7 @@ export default function Home() {
                 <div className="flex justify-between items-center pt-6 border-t border-yellow-600 border-opacity-30 gap-4">
                   <span className="text-3xl font-bold text-gray-900">₹1,000</span>
                   <button
-                    onClick={() => handleAddToCart('performance-tincture', 'Performance Tincture', 1000)}
+                    onClick={() => handleAddToCart('performance-tincture', 'Cordyceps Endurance Tincture', 1000)}
                     className="bg-green-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-800 transition"
                   >
                     Add to Cart
@@ -185,6 +186,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/products" className="inline-block bg-green-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-green-800 transition">
+              Shop Now <ArrowRight className="inline ml-2" size={20} />
+            </Link>
           </div>
         </div>
       </section>
@@ -294,6 +300,15 @@ export default function Home() {
         <img
           src="/images/sections/wheel-vitality.png"
           alt="Multi-System Vitality Optimization Wheel"
+          className="w-full h-auto object-cover"
+        />
+      </section>
+
+      {/* Adish Hindi Section */}
+      <section className="py-0 px-0 bg-white">
+        <img
+          src="/images/adish-hindi.png"
+          alt="Adish in Hindi"
           className="w-full h-auto object-cover"
         />
       </section>
