@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingCart } from 'lucide-react';
+import { Menu, X, ShoppingCart, ChevronDown } from 'lucide-react';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
@@ -40,20 +41,36 @@ export default function Navigation() {
               Home
             </Link>
             <Link href="/products" className="text-adish-dark hover:text-adish-gold transition">
-              Products
+              Shop
             </Link>
-            <Link href="/about" className="text-adish-dark hover:text-adish-gold transition">
-              About
-            </Link>
-            <Link href="/blog" className="text-adish-dark hover:text-adish-gold transition">
-              Blog
-            </Link>
-            <Link href="/faq" className="text-adish-dark hover:text-adish-gold transition">
-              FAQ
-            </Link>
-            <Link href="/contact" className="text-adish-dark hover:text-adish-gold transition">
-              Contact
-            </Link>
+
+            {/* About Dropdown */}
+            <div
+              className="relative group"
+              onMouseEnter={() => setIsAboutOpen(true)}
+              onMouseLeave={() => setIsAboutOpen(false)}
+            >
+              <button className="text-adish-dark hover:text-adish-gold transition flex items-center gap-1">
+                About <ChevronDown size={16} />
+              </button>
+
+              {isAboutOpen && (
+                <div className="absolute left-0 mt-0 w-48 bg-white border-2 border-adish-beige rounded-lg shadow-lg py-2 z-50">
+                  <Link href="/about" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige transition">
+                    About
+                  </Link>
+                  <Link href="/blog" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige transition">
+                    Blog
+                  </Link>
+                  <Link href="/faq" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige transition">
+                    FAQ
+                  </Link>
+                  <Link href="/contact" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige transition">
+                    Contact
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Cart & Mobile Menu */}
@@ -84,20 +101,25 @@ export default function Navigation() {
               Home
             </Link>
             <Link href="/products" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded">
-              Products
+              Shop
             </Link>
-            <Link href="/about" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded">
-              About
-            </Link>
-            <Link href="/blog" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded">
-              Blog
-            </Link>
-            <Link href="/faq" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded">
-              FAQ
-            </Link>
-            <Link href="/contact" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded">
-              Contact
-            </Link>
+            <div className="px-4 py-2">
+              <p className="font-bold text-adish-dark mb-2">About</p>
+              <div className="ml-4 space-y-1">
+                <Link href="/about" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm">
+                  About
+                </Link>
+                <Link href="/blog" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm">
+                  Blog
+                </Link>
+                <Link href="/faq" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm">
+                  FAQ
+                </Link>
+                <Link href="/contact" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm">
+                  Contact
+                </Link>
+              </div>
+            </div>
           </div>
         )}
       </div>
