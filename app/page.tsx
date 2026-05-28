@@ -34,7 +34,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black opacity-50"></div>
 
         {/* Text Content - Overlaid */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8 pt-16">
           <div className="max-w-2xl">
             <div className="mb-6">
               <span className="inline-block bg-white text-adish-dark px-6 py-3 rounded-full text-sm font-bold shadow-xl">
