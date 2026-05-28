@@ -5,75 +5,112 @@ export default function About() {
       <section className="bg-gradient-to-r from-adish-green to-adish-dark py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-5xl font-serif font-bold text-white mb-4">
-            Our Story
+            About Us: Empowering Your Natural Potential
           </h1>
           <p className="text-xl text-adish-beige max-w-2xl">
-            Bridging 2,000 years of Himalayan wisdom with modern performance science
+            Nature holds the key to unlocking peak human performance
           </p>
         </div>
       </section>
 
-      {/* Philosophy Section */}
+      {/* Mission & Philosophy Section */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-serif font-bold text-adish-dark mb-8">
-            The Philosophy
+          <h2 className="text-4xl font-serif font-bold text-adish-dark mb-12">
+            Our Philosophy
           </h2>
-          <div className="space-y-6 text-lg text-adish-green leading-relaxed">
-            <p>
-              <strong className="text-adish-dark">Adish Ventures</strong> is built on a singular belief: nature holds the most profound answers to modern health challenges.
-            </p>
-            <p>
-              For 2,000 years, Himalayan herders discovered that Cordyceps Militaris delivered something extraordinary—sustained energy without collapse, clarity without stimulant jitters, vitality at the systemic level.
-            </p>
-            <p>
-              Today, we're not chasing wellness trends. We're curating them through science. Every product is engineered for measurable biological outcomes using dual-extract methodology that captures both water-soluble and fat-soluble bioactives.
+
+          <div className="space-y-8">
+            <div>
+              <p className="text-xl text-adish-green leading-relaxed font-medium mb-6">
+                At <strong className="text-adish-dark">Adish Ventures</strong>, we believe that nature holds the key to unlocking peak human performance. Our mission is to bridge the gap between ancient botanical wisdom and modern wellness by providing premium-grade <em>Cordyceps militaris</em> products designed for those who refuse to settle.
+              </p>
+            </div>
+
+            <div className="bg-adish-beige p-8 rounded-lg border-l-4 border-adish-gold">
+              <h3 className="text-2xl font-bold text-adish-dark mb-4">We Don't Just Supply, We Fuel</h3>
+              <p className="text-adish-green text-lg leading-relaxed">
+                We don't just supply supplements; we supply fuel for your ambition. Whether you are an athlete looking to push your physical limits, a professional seeking sustained mental clarity, or someone simply striving for a more vibrant, energized lifestyle, our products are crafted to support your body's natural rhythm.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quality Without Compromise */}
+      <section className="py-20 px-4" style={{ background: 'linear-gradient(135deg, #e8dcc8 0%, #f5f1e8 100%)' }}>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-serif font-bold text-adish-dark mb-12">
+            Quality Without Compromise
+          </h2>
+
+          <p className="text-xl text-adish-green leading-relaxed mb-8 font-medium">
+            We understand that when it comes to your health, purity is non-negotiable. That is why Adish Ventures is built on a foundation of rigorous quality control and transparency. Every batch of our <em>Cordyceps militaris</em>—whether in tincture or extract powder form—is cultivated to ensure maximum potency and bioavailability.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-white p-8 rounded-lg border-l-4 border-adish-gold shadow-md">
+              <h3 className="text-xl font-bold text-adish-dark mb-4">🌿 Premium Sourcing</h3>
+              <p className="text-adish-green">
+                We prioritize nutrient-dense, high-quality <em>Cordyceps militaris</em> from trusted sources.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-lg border-l-4 border-adish-gold shadow-md">
+              <h3 className="text-xl font-bold text-adish-dark mb-4">⚡ Bioavailability Focused</h3>
+              <p className="text-adish-green">
+                Our dual-extraction processes ensure that you receive the full spectrum of the mushroom's bioactive compounds, including cordycepin and polysaccharides.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-lg border-l-4 border-adish-gold shadow-md">
+              <h3 className="text-xl font-bold text-adish-dark mb-4">✓ Purity Guaranteed</h3>
+              <p className="text-adish-green">
+                We believe in clean labels. Our products are free from unnecessary fillers, ensuring that you get nothing but the best from every dose.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-adish-beige p-8 rounded-lg border-l-4 border-adish-gold">
+            <h3 className="text-2xl font-bold text-adish-dark mb-4">Our Commitment</h3>
+            <p className="text-adish-green text-lg leading-relaxed">
+              Built on three foundational pillars: <strong>Purity</strong> in sourcing, <strong>Purpose</strong> in outcomes, and <strong>Potency</strong> in formulation. Every product embodies this architecture.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Values with Image */}
-      <section className="py-20 px-4" style={{ background: 'linear-gradient(135deg, #e8dcc8 0%, #f5f1e8 100%)' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <h2 className="text-4xl font-serif font-bold text-gray-900 mb-8">
-                Our Core Values
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Built on three foundational pillars: Purity in sourcing, Purpose in outcomes, and Potency in formulation. Every product embodies this architecture.
-              </p>
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-lg">
-              <img
-                src="/images/about/architecture.png"
-                alt="The Foundational Architecture"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          <h2 className="text-3xl font-serif font-bold text-gray-900 text-center mb-12">
-            What We Stand For
+      {/* Why Choose Us */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-serif font-bold text-adish-dark mb-12 text-center">
+            Why Choose Adish Ventures?
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-lg border-l-4 border-yellow-600 shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Purity</h3>
-              <p className="text-gray-700">
-                Zero unnecessary additives, fillers, or compromises in sourcing. Unadulterated botanical material, engineered for maximum potency.
-              </p>
+
+          <div className="space-y-8">
+            <p className="text-xl text-adish-green leading-relaxed text-center font-medium">
+              In a market saturated with generic supplements, <strong className="text-adish-dark">Adish Ventures stands apart</strong> through our dedication to efficacy. By concentrating on the science of <em>Cordyceps</em>, we provide a reliable, consistent, and potent solution for energy, endurance, and overall well-being.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-adish-beige p-8 rounded-lg">
+                <h3 className="text-2xl font-bold text-adish-dark mb-4">🔬 Science-Driven</h3>
+                <p className="text-adish-green leading-relaxed">
+                  We don't chase wellness trends—we curate them through rigorous science. Every product is engineered for measurable biological outcomes using dual-extract methodology.
+                </p>
+              </div>
+
+              <div className="bg-adish-beige p-8 rounded-lg">
+                <h3 className="text-2xl font-bold text-adish-dark mb-4">🎯 Purpose First</h3>
+                <p className="text-adish-green leading-relaxed">
+                  Not for wellness trends. For those seeking real, measurable vitality backed by 2,000 years of traditional knowledge and modern science.
+                </p>
+              </div>
             </div>
-            <div className="bg-white p-8 rounded-lg border-l-4 border-green-700 shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Purpose</h3>
-              <p className="text-gray-700">
-                A rigorous commitment to physiological health outcomes, rejecting superficial wellness aesthetics in favor of real, measurable efficacy.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-lg border-l-4 border-blue-600 shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Potency</h3>
-              <p className="text-gray-700">
-                Engineered formulations designed for real, measurable biological effect. Every compound selected for synergistic intelligence.
+
+            <div className="bg-adish-gold bg-opacity-20 p-8 rounded-lg border-l-4 border-adish-gold text-center">
+              <p className="text-lg text-adish-dark font-medium">
+                <strong>We are here to support your journey, every step of the way.</strong>
               </p>
             </div>
           </div>

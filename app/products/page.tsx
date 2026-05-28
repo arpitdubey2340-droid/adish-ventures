@@ -42,11 +42,11 @@ export default function Products() {
     ],
     'performance-tincture': [
       '/images/products/tincture-real.avif',
-      '/images/products/tincture-dropper.avif',
       '/images/products/tincture-lifestyle.avif',
+      '/images/products/tincture-spoon.avif',
+      '/images/products/tincture-dropper.avif',
       '/images/products/tincture-bottle.avif',
       '/images/products/tincture-back.avif',
-      '/images/products/tincture-use.avif',
     ],
   };
 
