@@ -91,7 +91,7 @@ export default function Products() {
                   </div>
 
                   {/* Right: Product Details */}
-                  <div className="flex flex-col justify-start sticky top-20 lg:top-24">
+                  <div className="flex flex-col justify-start">
                     {/* Title & Rating */}
                     <h2 className="text-4xl font-serif font-bold text-adish-dark mb-3">
                       {product.name}
