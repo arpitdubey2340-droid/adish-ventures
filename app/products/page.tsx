@@ -147,37 +147,39 @@ export default function Products() {
                     </div>
 
                     {/* Quantity + Add to Cart + Buy Now - All on One Line */}
-                    <div className="mb-8 flex items-center gap-3 flex-wrap">
+                    <div className="mb-8 flex items-center gap-3">
                       {/* Quantity Selector */}
-                      <div className="flex items-center gap-2">
-                        <span className="text-adish-green font-semibold whitespace-nowrap">Qty:</span>
-                        <div className="flex items-center border border-gray-300 rounded-lg">
-                          <button
-                            onClick={() => handleQuantityChange(product.id, (quantities[product.id] || 1) - 1)}
-                            className="px-3 py-2 text-adish-green hover:bg-gray-100 font-bold"
-                          >
-                            −
-                          </button>
-                          <input
-                            type="number"
-                            min="1"
-                            value={quantities[product.id] || 1}
-                            onChange={(e) => handleQuantityChange(product.id, parseInt(e.target.value) || 1)}
-                            className="w-10 text-center border-0 font-bold text-adish-dark"
-                          />
-                          <button
-                            onClick={() => handleQuantityChange(product.id, (quantities[product.id] || 1) + 1)}
-                            className="px-3 py-2 text-adish-green hover:bg-gray-100 font-bold"
-                          >
-                            +
-                          </button>
-                        </div>
+                      <span className="text-adish-green font-semibold">Qty:</span>
+                      <div className="flex items-center border border-gray-300 rounded-lg">
+                        <button
+                          onClick={() => handleQuantityChange(product.id, (quantities[product.id] || 1) - 1)}
+                          className="px-3 py-2 text-adish-green hover:bg-gray-100 font-bold"
+                        >
+                          −
+                        </button>
+                        <input
+                          type="number"
+                          min="1"
+                          value={quantities[product.id] || 1}
+                          onChange={(e) => handleQuantityChange(product.id, parseInt(e.target.value) || 1)}
+                          className="w-10 text-center border-0 font-bold text-adish-dark"
+                        />
+                        <button
+                          onClick={() => handleQuantityChange(product.id, (quantities[product.id] || 1) + 1)}
+                          className="px-3 py-2 text-adish-green hover:bg-gray-100 font-bold"
+                        >
+                          +
+                        </button>
                       </div>
 
                       {/* Add to Cart Button */}
                       <button
                         onClick={() => handleAddToCart(product.id, product.name, product.price)}
-                        className="px-6 py-2 rounded-lg font-bold text-white bg-adish-green hover:bg-adish-dark transition-all flex items-center justify-center gap-2 text-sm shadow-md whitespace-nowrap"
+                        className={`px-6 py-2 rounded-lg font-bold text-white transition-all flex items-center justify-center gap-2 text-sm shadow-md ${
+                          selectedProduct === product.id
+                            ? 'bg-green-600'
+                            : 'bg-green-700 hover:bg-green-800'
+                        }`}
                       >
                         {selectedProduct === product.id ? (
                           <>
@@ -193,7 +195,7 @@ export default function Products() {
                       {/* Buy Now Button */}
                       <button
                         onClick={() => handleAddToCart(product.id, product.name, product.price)}
-                        className="px-6 py-2 rounded-lg font-bold bg-adish-gold text-adish-dark hover:bg-yellow-500 transition-all shadow-md text-sm flex items-center justify-center whitespace-nowrap"
+                        className="px-6 py-2 rounded-lg font-bold bg-adish-gold text-adish-dark hover:bg-yellow-500 transition-all shadow-md text-sm flex items-center justify-center"
                       >
                         Buy Now
                       </button>
