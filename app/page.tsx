@@ -37,9 +37,12 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8">
           <div className="max-w-2xl">
             <div className="mb-6">
-              <span className="inline-block bg-yellow-600 bg-opacity-95 text-white px-6 py-3 rounded-full text-sm font-bold mb-4 shadow-xl" style={{ color: '#1B4D3E' }}>
-                REDEFINING BOTANICAL VITALITY
-              </span>
+              <div className="inline-block bg-white px-6 py-4 rounded-full shadow-xl">
+                <div className="text-sm font-bold text-adish-dark text-center">
+                  <div>Ethnobotanical</div>
+                  <div className="text-xs mt-1">REDEFINING BOTANICAL VITALITY</div>
+                </div>
+              </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight" style={{
               color: '#FFFFFF',
