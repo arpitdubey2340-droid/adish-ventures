@@ -146,11 +146,11 @@ export default function Products() {
                       <p className="text-green-600 text-sm font-semibold mt-2">Save ₹200 - Limited Offer</p>
                     </div>
 
-                    {/* Compact One-Line: Quantity + Add to Cart + Buy Now */}
-                    <div className="mb-8 flex flex-col md:flex-row md:items-center gap-3">
+                    {/* Quantity + Action Buttons */}
+                    <div className="mb-8 space-y-3">
                       {/* Quantity Selector */}
-                      <div className="flex items-center gap-2">
-                        <span className="text-adish-green font-semibold text-sm md:text-base">Qty:</span>
+                      <div className="flex items-center gap-3">
+                        <span className="text-adish-green font-semibold">Qty:</span>
                         <div className="flex items-center border border-gray-300 rounded-lg">
                           <button
                             onClick={() => handleQuantityChange(product.id, (quantities[product.id] || 1) - 1)}
@@ -174,33 +174,34 @@ export default function Products() {
                         </div>
                       </div>
 
-                      {/* Add to Cart Button */}
-                      <button
-                        onClick={() => handleAddToCart(product.id, product.name, product.price)}
-                        className={`flex-1 md:flex-none px-6 py-2 rounded-lg font-bold transition-all flex items-center justify-center gap-2 ${
-                          selectedProduct === product.id
-                            ? 'bg-green-600 text-white shadow-lg'
-                            : 'bg-adish-green text-white hover:bg-adish-dark shadow-md hover:shadow-lg'
-                        }`}
-                      >
-                        {selectedProduct === product.id ? (
-                          <>
-                            <Check size={18} /> Added!
-                          </>
-                        ) : (
-                          <>
-                            <ShoppingCart size={18} /> Add to Cart
-                          </>
-                        )}
-                      </button>
+                      {/* Add to Cart + Buy Now Buttons */}
+                      <div className="flex gap-3">
+                        <button
+                          onClick={() => handleAddToCart(product.id, product.name, product.price)}
+                          className={`flex-1 px-4 py-2 rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-sm ${
+                            selectedProduct === product.id
+                              ? 'bg-green-600 text-white shadow-lg'
+                              : 'bg-adish-green text-white hover:bg-adish-dark shadow-md hover:shadow-lg'
+                          }`}
+                        >
+                          {selectedProduct === product.id ? (
+                            <>
+                              <Check size={16} /> Added!
+                            </>
+                          ) : (
+                            <>
+                              <ShoppingCart size={16} /> Add to Cart
+                            </>
+                          )}
+                        </button>
 
-                      {/* Buy Now Button */}
-                      <button
-                        onClick={() => handleAddToCart(product.id, product.name, product.price)}
-                        className="flex-1 md:flex-none px-6 py-2 rounded-lg font-bold bg-adish-gold text-adish-dark hover:bg-yellow-500 transition-all shadow-md whitespace-nowrap"
-                      >
-                        Buy Now
-                      </button>
+                        <button
+                          onClick={() => handleAddToCart(product.id, product.name, product.price)}
+                          className="flex-1 px-4 py-2 rounded-lg font-bold bg-adish-gold text-adish-dark hover:bg-yellow-500 transition-all shadow-md text-sm"
+                        >
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
 
                     {/* Key Benefits */}
