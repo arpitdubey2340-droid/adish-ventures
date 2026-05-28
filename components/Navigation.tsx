@@ -96,37 +96,31 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <>
-            {/* Backdrop overlay */}
-            <div className="fixed inset-0 bg-black bg-opacity-50 md:hidden z-40" onClick={() => setIsOpen(false)} />
-
-            {/* Mobile Menu */}
-            <div className="md:hidden fixed top-16 left-0 right-0 bg-white border-b-2 border-adish-beige pb-4 space-y-2 z-50 max-h-[calc(100vh-64px)] overflow-y-auto">
-              <Link href="/" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded" onClick={() => setIsOpen(false)}>
-                Home
-              </Link>
-              <Link href="/products" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded" onClick={() => setIsOpen(false)}>
-                Shop
-              </Link>
-              <div className="px-4 py-2">
-                <p className="font-bold text-adish-dark mb-2">About</p>
-                <div className="ml-4 space-y-1">
-                  <Link href="/about" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm" onClick={() => setIsOpen(false)}>
-                    About
-                  </Link>
-                  <Link href="/blog" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm" onClick={() => setIsOpen(false)}>
-                    Blog
-                  </Link>
-                  <Link href="/faq" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm" onClick={() => setIsOpen(false)}>
-                    FAQ
-                  </Link>
-                  <Link href="/contact" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm" onClick={() => setIsOpen(false)}>
-                    Contact
-                  </Link>
-                </div>
+          <div className="md:hidden bg-white border-b-2 border-adish-beige pb-4 space-y-2">
+            <Link href="/" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded" onClick={() => setIsOpen(false)}>
+              Home
+            </Link>
+            <Link href="/products" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded" onClick={() => setIsOpen(false)}>
+              Shop
+            </Link>
+            <div className="px-4 py-2">
+              <p className="font-bold text-adish-dark mb-2">About</p>
+              <div className="ml-4 space-y-1">
+                <Link href="/about" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm" onClick={() => setIsOpen(false)}>
+                  About
+                </Link>
+                <Link href="/blog" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm" onClick={() => setIsOpen(false)}>
+                  Blog
+                </Link>
+                <Link href="/faq" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm" onClick={() => setIsOpen(false)}>
+                  FAQ
+                </Link>
+                <Link href="/contact" className="block px-4 py-2 text-adish-dark hover:bg-adish-beige rounded text-sm" onClick={() => setIsOpen(false)}>
+                  Contact
+                </Link>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     </nav>
