@@ -39,9 +39,18 @@ export default function About() {
               Quality Without Compromise
             </h2>
 
-            <p className="text-lg text-adish-green leading-relaxed mb-8">
+            <p className="text-lg text-adish-green leading-relaxed mb-12">
               We understand that when it comes to your health, purity is non-negotiable. That is why Adish Ventures is built on a foundation of rigorous quality control and transparency. Every batch of our <em>Cordyceps militaris</em>—whether in tincture or extract powder form—is cultivated to ensure maximum potency and bioavailability.
             </p>
+
+            {/* Foundational Architecture Image */}
+            <div className="mb-12 rounded-lg overflow-hidden shadow-lg">
+              <img
+                src="/images/about/foundational-architecture.png"
+                alt="The Foundational Architecture - Purity, Purpose, Potency"
+                className="w-full h-auto object-cover"
+              />
+            </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-adish-beige p-6 rounded-lg border-l-4 border-adish-gold">
