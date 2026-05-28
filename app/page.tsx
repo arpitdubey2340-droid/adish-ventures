@@ -296,15 +296,6 @@ export default function Home() {
         />
       </section>
 
-      {/* Adish Hindi Section */}
-      <section className="py-0 px-0 bg-white">
-        <img
-          src="/images/adish-bio-clear.png"
-          alt="Adish in Hindi"
-          className="w-full h-auto object-cover"
-        />
-      </section>
-
       {/* CTA Section */}
       <section style={{ background: 'linear-gradient(135deg, #3a6b4a 0%, #2d5a45 100%)' }} className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">

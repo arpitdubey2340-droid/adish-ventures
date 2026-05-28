@@ -53,7 +53,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start space-x-2">
                 <Mail size={16} className="text-yellow-400 mt-1 flex-shrink-0" />
-                <a href="mailto:adishventures@outlook.com" className="text-yellow-50 hover:text-yellow-300 transition">adishventures@outlook.com</a>
+                <a href="mailto:mailus@adishventures.com" className="text-yellow-50 hover:text-yellow-300 transition">mailus@adishventures.com</a>
               </div>
               <div className="flex items-start space-x-2">
                 <MapPin size={16} className="text-yellow-400 mt-1 flex-shrink-0" />

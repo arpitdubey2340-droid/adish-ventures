@@ -151,8 +151,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-adish-dark mb-1">Email</h3>
-                    <a href="mailto:adishventures@outlook.com" className="text-adish-green hover:text-adish-gold transition-colors">
-                      adishventures@outlook.com
+                    <a href="mailto:mailus@adishventures.com" className="text-adish-green hover:text-adish-gold transition-colors">
+                      mailus@adishventures.com
                     </a>
                   </div>
                 </div>
