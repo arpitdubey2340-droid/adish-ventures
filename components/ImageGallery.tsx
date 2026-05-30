@@ -54,7 +54,7 @@ export default function ImageGallery({ images, productName }: ImageGalleryProps)
   return (
     <div className="flex flex-col gap-4 w-full overflow-x-hidden">
       {/* Main Image */}
-      <div className="relative w-full bg-gray-100 rounded-lg overflow-hidden shadow-lg aspect-square flex items-center justify-center group">
+      <div className="relative w-full max-w-full bg-gray-100 rounded-lg overflow-hidden shadow-lg aspect-square flex items-center justify-center group">
         <img
           key={activeIndex}
           src={images[activeIndex]}
@@ -87,11 +87,11 @@ export default function ImageGallery({ images, productName }: ImageGalleryProps)
 
       {/* Thumbnail Carousel */}
       {images.length > 1 && (
-        <div className="relative w-full">
+        <div className="relative w-full max-w-full overflow-hidden">
           <div
             ref={thumbnailScroll}
-            className="flex gap-2 overflow-x-auto pb-2 scroll-smooth w-full"
-            style={{ scrollBehavior: 'smooth', scrollbarGutter: 'stable' }}
+            className="flex gap-2 overflow-x-auto pb-2 scroll-smooth w-full max-w-full"
+            style={{ scrollBehavior: 'smooth', scrollbarGutter: 'stable', WebkitOverflowScrolling: 'touch' }}
           >
             {images.map((image, index) => (
               <button

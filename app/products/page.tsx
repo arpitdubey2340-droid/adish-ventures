@@ -61,10 +61,10 @@ export default function Products() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
-      <section className="bg-gradient-to-r from-adish-green to-adish-dark py-12 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-gradient-to-r from-adish-green to-adish-dark py-12 px-4 w-full overflow-x-hidden">
+        <div className="max-w-7xl mx-auto w-full">
           <h1 className="text-5xl font-serif font-bold text-white mb-4">
             Our Products
           </h1>
@@ -75,15 +75,15 @@ export default function Products() {
       </section>
 
       {/* Products - Stacked Vertically */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 px-4 w-full overflow-x-hidden">
+        <div className="max-w-7xl mx-auto w-full">
           {products.map((product, idx) => (
-            <div key={product.id} id={`product-${product.id}`}>
+            <div key={product.id} id={`product-${product.id}`} className="w-full overflow-x-hidden">
               {/* Product Section */}
-              <div className="py-12">
-                <div className="grid lg:grid-cols-2 gap-4 lg:gap-12 items-start w-full max-w-full">
+              <div className="py-12 w-full overflow-x-hidden">
+                <div className="grid lg:grid-cols-2 gap-4 lg:gap-12 items-start w-full max-w-full overflow-x-hidden">
                   {/* Left: Product Image Gallery */}
-                  <div>
+                  <div className="w-full overflow-x-hidden min-w-0">
                     <ImageGallery
                       images={productImageGalleries[product.id]}
                       productName={product.name}
@@ -91,7 +91,7 @@ export default function Products() {
                   </div>
 
                   {/* Right: Product Details */}
-                  <div className="flex flex-col justify-start px-0 sm:px-2">
+                  <div className="flex flex-col justify-start px-0 sm:px-2 w-full overflow-x-hidden min-w-0">
                     {/* Title & Rating */}
                     <h2 className="text-4xl font-serif font-bold text-adish-dark mb-3">
                       {product.name}
