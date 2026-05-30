@@ -21,10 +21,10 @@ export default function Products() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden w-full">
       {/* Header */}
-      <section className="bg-gradient-to-r from-adish-green to-adish-dark py-8 sm:py-12 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-gradient-to-r from-adish-green to-adish-dark py-8 sm:py-12 px-4 overflow-x-hidden w-full">
+        <div className="max-w-7xl mx-auto w-full">
           <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white mb-4">
             Our Products
           </h1>
@@ -35,8 +35,8 @@ export default function Products() {
       </section>
 
       {/* Products Grid */}
-      <section className="py-12 sm:py-20 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-12 sm:py-20 px-4 overflow-x-hidden w-full">
+        <div className="max-w-7xl mx-auto w-full">
           <div className="grid md:grid-cols-2 gap-6 sm:gap-12">
             {products.map((product, idx) => {
               // Use your product images
@@ -225,8 +225,8 @@ export default function Products() {
       </section>
 
       {/* Why Adish */}
-      <section className="py-12 sm:py-20 px-4 bg-adish-beige">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-12 sm:py-20 px-4 bg-adish-beige overflow-x-hidden w-full">
+        <div className="max-w-7xl mx-auto w-full">
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-adish-dark text-center mb-8 sm:mb-12">
             Why Choose Adish Ventures?
           </h2>
