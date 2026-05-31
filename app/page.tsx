@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, Zap, Leaf, Target } from 'lucide-react';
+import Button from '@/components/Button';
 
 export default function Home() {
   const handleAddToCart = (productId: string, productName: string, price: number) => {
@@ -296,17 +297,20 @@ export default function Home() {
         />
       </section>
 
-      {/* CTA Section */}
-      <section style={{ background: 'linear-gradient(135deg, #3a6b4a 0%, #2d5a45 100%)' }} className="py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-serif font-bold text-white mb-6">
-            Ready for The Ultimate Daily Ritual?
+      {/* CTA SECTION - Ready to Elevate Your Performance */}
+      <section className="py-12 sm:py-16 px-4 bg-gradient-to-r from-adish-gold to-yellow-500 w-full overflow-x-hidden">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-adish-dark mb-6">
+            Ready to Elevate Your Performance?
           </h2>
-          <p className="text-xl text-yellow-50 mb-8">
-            Join thousands experiencing elite botanical vitality backed by 2,000 years of wisdom and modern science.
+          <p className="text-adish-dark text-lg mb-8">
+            Join thousands of athletes experiencing enhanced energy and endurance. 30-day money-back guarantee.
           </p>
-          <Link href="/products" className="inline-block bg-yellow-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-yellow-700 transition-colors">
-            Explore Products Now
+          <Link href="/products" className="inline-block">
+            <Button variant="primary" size="lg" className="bg-adish-dark text-white hover:bg-adish-green">
+              <ArrowRight size={20} />
+              Shop Now
+            </Button>
           </Link>
         </div>
       </section>

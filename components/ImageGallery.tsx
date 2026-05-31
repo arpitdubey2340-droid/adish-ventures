@@ -52,9 +52,9 @@ export default function ImageGallery({ images, productName }: ImageGalleryProps)
   }, [activeIndex]);
 
   return (
-    <div className="flex flex-col gap-4 w-full">
+    <div className="flex flex-col gap-4 w-full overflow-x-hidden">
       {/* Main Image */}
-      <div className="relative w-full bg-gray-100 rounded-lg overflow-hidden shadow-lg aspect-square flex items-center justify-center group">
+      <div className="relative w-full max-w-full bg-gray-100 rounded-lg overflow-hidden shadow-lg aspect-square flex items-center justify-center group">
         <img
           key={activeIndex}
           src={images[activeIndex]}
@@ -87,11 +87,11 @@ export default function ImageGallery({ images, productName }: ImageGalleryProps)
 
       {/* Thumbnail Carousel */}
       {images.length > 1 && (
-        <div className="relative">
+        <div className="relative w-full max-w-full overflow-hidden">
           <div
             ref={thumbnailScroll}
-            className="flex gap-2 overflow-x-auto pb-2 scroll-smooth"
-            style={{ scrollBehavior: 'smooth' }}
+            className="flex gap-2 overflow-x-auto pb-2 scroll-smooth w-full max-w-full"
+            style={{ scrollBehavior: 'smooth', scrollbarGutter: 'stable', WebkitOverflowScrolling: 'touch' }}
           >
             {images.map((image, index) => (
               <button
@@ -115,22 +115,22 @@ export default function ImageGallery({ images, productName }: ImageGalleryProps)
           </div>
 
           {/* Mobile Navigation Buttons (Thumbnail Carousel) */}
-          <div className="md:hidden absolute inset-y-0 left-0 flex items-center -ml-8">
+          <div className="md:hidden absolute inset-y-0 left-0 flex items-center pl-1">
             <button
               onClick={handlePrev}
-              className="bg-adish-green text-white p-2 rounded-full"
+              className="bg-adish-green text-white p-1 rounded-full flex-shrink-0"
               aria-label="Previous"
             >
-              <ChevronLeft size={16} />
+              <ChevronLeft size={14} />
             </button>
           </div>
-          <div className="md:hidden absolute inset-y-0 right-0 flex items-center -mr-8">
+          <div className="md:hidden absolute inset-y-0 right-0 flex items-center pr-1">
             <button
               onClick={handleNext}
-              className="bg-adish-green text-white p-2 rounded-full"
+              className="bg-adish-green text-white p-1 rounded-full flex-shrink-0"
               aria-label="Next"
             >
-              <ChevronRight size={16} />
+              <ChevronRight size={14} />
             </button>
           </div>
         </div>
