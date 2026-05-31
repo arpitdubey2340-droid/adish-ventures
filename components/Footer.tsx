@@ -8,13 +8,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
+            <div className="flex items-center space-x-3 mb-4">
               <img
                 src="/images/branding/logo.png"
                 alt="Adish Ventures Logo"
-                className="h-10 w-10 object-contain"
+                className="h-12 w-12 object-contain"
               />
-              <span className="text-xl font-serif font-bold">Adish Ventures</span>
+              <span className="text-lg font-serif font-bold">Adish Ventures</span>
             </div>
             <p className="text-yellow-50 text-sm">
               Redefining Botanical Vitality through 2,000 years of Himalayan wisdom and modern science.

@@ -24,13 +24,13 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition">
+          <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition">
             <img
               src="/images/branding/logo.png"
               alt="Adish Ventures Logo"
-              className="h-10 w-10 object-contain"
+              className="h-14 w-14 object-contain"
             />
-            <span className="text-lg sm:text-xl font-serif font-bold text-gray-900">
+            <span className="text-xl sm:text-2xl font-serif font-bold text-gray-900">
               Ethnobotanical
             </span>
           </Link>

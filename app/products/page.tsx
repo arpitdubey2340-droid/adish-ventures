@@ -1,7 +1,7 @@
 'use client';
 
 import { products } from '@/lib/products';
-import { ShoppingCart, Check, Star, ShieldCheck } from 'lucide-react';
+import { ShoppingCart, Check, Star, ShieldCheck, ChevronDown, Zap, Shield, Heart, Leaf, Droplet, FlaskConical } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import ImageGallery from '@/components/ImageGallery';
 
@@ -98,17 +98,34 @@ export default function Products() {
                     </h2>
                     <div className="flex items-center gap-3 mb-6">
                       <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={18} className="fill-adish-gold text-adish-gold" />
-                        ))}
+                        {[...Array(5)].map((_, i) => {
+                          if (i < 4) {
+                            return <Star key={i} size={20} className="fill-adish-gold text-adish-gold" />;
+                          } else {
+                            return (
+                              <div key={i} className="relative">
+                                <Star size={20} className="fill-gray-300 text-gray-300" />
+                                <div className="absolute top-0 left-0 overflow-hidden w-1/2">
+                                  <Star size={20} className="fill-adish-gold text-adish-gold" />
+                                </div>
+                              </div>
+                            );
+                          }
+                        })}
                       </div>
+                      <span className="text-adish-dark font-bold text-sm">4.5</span>
                       <span className="text-gray-600 text-sm font-medium">(1,247 verified reviews)</span>
                     </div>
 
                     {/* Trust Badges */}
                     <div className="flex items-center gap-2 mb-6 text-sm text-adish-green">
                       <ShieldCheck size={16} className="text-green-600" />
-                      <span>100% Pure • Lab Tested • Quality Assured</span>
+                      <span>
+                        {product.id === 'cordyceps-powder'
+                          ? '100% Pure Fruiting Body Extract • Lab Tested • 30% Beta Glucan • Quality Assured'
+                          : '100% Pure Fruiting Body Extract • Lab Tested • Quality Assured'
+                        }
+                      </span>
                     </div>
 
                     {/* Description */}
@@ -116,25 +133,16 @@ export default function Products() {
                       {product.description}
                     </p>
 
-                    {/* Quick Specs */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mb-8 bg-adish-beige p-3 sm:p-5 rounded-lg border border-adish-gold/20 w-full max-w-full">
-                      <div>
-                        <p className="text-adish-green text-xs uppercase tracking-wide font-bold mb-1">Absorption</p>
-                        <p className="font-bold text-adish-dark">{product.specs.absorptionSpeed}</p>
-                      </div>
-                      <div>
-                        <p className="text-adish-green text-xs uppercase tracking-wide font-bold mb-1">Bioavailability</p>
-                        <p className="font-bold text-adish-dark">{product.specs.bioavailability}</p>
-                      </div>
-                      <div>
-                        <p className="text-adish-green text-xs uppercase tracking-wide font-bold mb-1">Dosing</p>
-                        <p className="font-bold text-adish-dark">{product.specs.dosePrecision}</p>
-                      </div>
-                      <div>
-                        <p className="text-adish-green text-xs uppercase tracking-wide font-bold mb-1">Shelf Life</p>
-                        <p className="font-bold text-adish-dark">{product.specs.shelfLife}</p>
-                      </div>
+                    {/* Bio Section */}
+                    <div className="mb-6 p-4 bg-white border-l-4 border-adish-gold rounded-lg">
+                      <p className="text-adish-green text-sm leading-relaxed font-medium">
+                        {product.id === 'cordyceps-powder'
+                          ? 'Ethnobotanical Cordyceps Potency Powder | Cordyceps Mushroom Powder Extract | 30 gms | 100 % Fruiting Body Extract | Herbal Supplement | For Energy & Endurance Support'
+                          : 'Ethnobotanical Endurance | Cordyceps Mushroom Liquid Extract | 30 ml | 100 % Fruiting Body 1:10 Dual Extract | Alcohol Free Tincture | Herbal Supplement | For Energy & Endurance Support'
+                        }
+                      </p>
                     </div>
+
 
                     {/* Price Section */}
                     <div className="mb-8 pb-8 border-b-2 border-gray-200">
@@ -201,53 +209,68 @@ export default function Products() {
                       </button>
                     </div>
 
-                    {/* Key Benefits */}
-                    <div className="bg-white border-l-4 border-adish-gold p-5 rounded-lg">
-                      <h3 className="font-bold text-adish-dark mb-4 text-sm uppercase tracking-wide">Key Benefits</h3>
-                      <ul className="space-y-3">
-                        {product.benefits.slice(0, 4).map((benefit, i) => (
-                          <li key={i} className="flex items-start gap-3 text-adish-green text-sm">
-                            <span className="text-adish-gold font-bold mt-1">✓</span>
-                            <span className="font-medium">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
                   </div>
                 </div>
 
-                {/* Below Product: Full Width Info */}
-                <div className="mt-16 pt-12 border-t-2 border-gray-200">
-                  {/* Suggested Use */}
-                  <div className="grid md:grid-cols-2 gap-8 mb-12">
-                    <div className="p-6 bg-adish-beige rounded-lg border-l-4 border-adish-gold">
-                      <h3 className="font-bold text-adish-dark mb-3 text-lg">📋 Suggested Use</h3>
-                      <p className="text-adish-green text-sm leading-relaxed">
-                        {idx === 0
-                          ? "Mix 1-2 teaspoons daily into your preferred beverage - water, coffee, smoothies, or tea. Best taken with meals for optimal absorption. Start with 1 teaspoon and increase gradually."
-                          : "Place 10-20 drops under tongue for 30-60 seconds before swallowing. Best taken on an empty stomach or as directed by a healthcare professional. Adjust dosage based on personal response."
-                        }
-                      </p>
-                    </div>
+                {/* About This Product Section - Expandable */}
+                <ExpandableAboutSection product={product} />
 
-                    <div className="p-6 bg-white border-2 border-adish-beige rounded-lg">
-                      <h3 className="font-bold text-adish-dark mb-3 text-lg">🧪 Specifications</h3>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between">
-                          <span className="text-adish-green font-semibold">Form:</span>
-                          <span className="text-adish-dark font-medium">{idx === 0 ? 'Fine Powder' : 'Liquid Extract'}</span>
+                {/* Below Product: Usage Guide Section */}
+                <div className="mt-16 pt-12 pb-12 px-6 sm:px-8 rounded-lg bg-adish-beige border-t-2 border-gray-200 -mx-6 sm:-mx-8">
+                  {/* Usage Guide */}
+                  <div className="mb-12 max-w-7xl mx-auto">
+                    <h2 className="text-4xl font-serif font-bold text-adish-dark mb-12 text-center">Usage Guide</h2>
+
+                    {/* Two Column Layout: Image + Content */}
+                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                      {/* Left: Product Image */}
+                      <div className="order-2 lg:order-1">
+                        <div className="relative w-full h-64 lg:h-80 rounded-lg overflow-hidden shadow-lg">
+                          <img
+                            src={
+                              product.id === 'cordyceps-powder'
+                                ? '/images/products/powder-usage.png'
+                                : '/images/products/tincture-usage.png'
+                            }
+                            alt={`${product.name} Usage`}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-adish-green font-semibold">Size:</span>
-                          <span className="text-adish-dark font-medium">{idx === 0 ? '50g' : '30 mL (1 FL OZ)'}</span>
+                      </div>
+
+                      {/* Right: Usage Information */}
+                      <div className="order-1 lg:order-2">
+                        {/* How to Use */}
+                        <div className="mb-8">
+                          <h3 className="text-2xl font-bold text-adish-dark mb-3">How to use</h3>
+                          <p className="text-adish-green text-base leading-relaxed font-medium">
+                            {idx === 0
+                              ? "Mix 1-2 teaspoons daily into your preferred beverage - water, coffee, smoothies, or tea. Best taken with meals for optimal absorption. Start with 1 teaspoon and increase gradually."
+                              : "Place 10-20 drops under tongue for 30-60 seconds before swallowing. Best taken on an empty stomach or as directed by a healthcare professional. Adjust dosage based on personal response."
+                            }
+                          </p>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-adish-green font-semibold">Shelf Life:</span>
-                          <span className="text-adish-dark font-medium">{product.specs.shelfLife}</span>
+
+                        {/* When to Use */}
+                        <div className="mb-8">
+                          <h3 className="text-2xl font-bold text-adish-dark mb-3">When to use</h3>
+                          <p className="text-adish-green text-base leading-relaxed font-medium">
+                            {idx === 0
+                              ? "Start your day with it to boost energy and focus. Or take during afternoon energy dips. Consistent daily use maximizes the adaptogenic benefits of Cordyceps."
+                              : "Start your morning for sustained energy throughout the day. Or use 30 minutes before physical activity for enhanced performance. Perfect for professionals needing sustained focus."
+                            }
+                          </p>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-adish-green font-semibold">Extract:</span>
-                          <span className="text-adish-dark font-medium">{product.specs.extraction}</span>
+
+                        {/* Expected Results */}
+                        <div>
+                          <h3 className="text-2xl font-bold text-adish-dark mb-3">Expected results</h3>
+                          <p className="text-adish-green text-base leading-relaxed font-medium">
+                            {idx === 0
+                              ? "Most users notice improved energy levels within 3-5 days. Enhanced stamina and reduced fatigue within 2-3 weeks. Optimal benefits develop with consistent daily use over 30 days."
+                              : "Rapid energy surge within 5-10 minutes. Enhanced focus and mental clarity within 15-20 minutes. Improved physical endurance and recovery within 1-2 weeks of regular use."
+                            }
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -265,6 +288,120 @@ export default function Products() {
           ))}
         </div>
       </section>
+    </div>
+  );
+}
+
+function ExpandableAboutSection({ product }: { product: any }) {
+  const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
+
+  const toggleExpand = (id: string) => {
+    setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const tinctureItems = [
+    {
+      id: 'energy',
+      icon: <Zap size={20} className="text-adish-gold" />,
+      title: 'Energy & Daily Performance',
+      content: 'Cordyceps militaris has been studied for its ability to enhance ATP (adenosine triphosphate) production at the cellular level, supporting oxygen utilisation and endurance — making it a popular choice among athletes.'
+    },
+    {
+      id: 'adaptogen',
+      icon: <Shield size={20} className="text-adish-gold" />,
+      title: 'Adaptogenic Balance',
+      content: 'Cordyceps militaris works as a true adaptogen by helping to modulate cortisol levels and support adrenal function, enabling the body to respond more efficiently to physical and mental stress.'
+    },
+    {
+      id: 'libido',
+      icon: <Heart size={20} className="text-adish-gold" />,
+      title: 'Libido & Sexual Vitality',
+      content: 'Cordyceps militaris has a long history of traditional use for reproductive health and is supported by emerging research suggesting it may help promote healthy testosterone levels and improve sexual function.'
+    },
+    {
+      id: 'fruiting',
+      icon: <Leaf size={20} className="text-adish-gold" />,
+      title: 'Fruiting Body Extract',
+      content: 'Our extract is derived exclusively from Cordyceps militaris fruiting bodies — the natural source of Cordycepin, a bioactive compound unique to this species and linked to immune modulation and cellular health.'
+    },
+    {
+      id: 'absorption',
+      icon: <Droplet size={20} className="text-adish-gold" />,
+      title: 'Fast Absorption',
+      content: 'Liquid Cordyceps militaris extract absorbs faster than capsules or powders, allowing key compounds like Cordycepin and Adenosine to enter the bloodstream more readily.'
+    },
+    {
+      id: 'tested',
+      icon: <FlaskConical size={20} className="text-adish-gold" />,
+      title: 'Lab Tested & Certified',
+      content: 'Advanced ultrasonic extraction maximises Cordyceps-specific actives. Every batch is independently lab tested for purity and potency, produced in ISO, FDA & HACCP certified facilities.'
+    }
+  ];
+
+  const powderItems = [
+    {
+      id: 'fruiting',
+      icon: <Leaf size={20} className="text-adish-gold" />,
+      title: 'Pure Fruiting Body',
+      content: 'Our Cordyceps Potency Powder is derived exclusively from Cordyceps militaris fruiting bodies — the natural source of Cordycepin, a bioactive compound linked to cellular energy production.'
+    },
+    {
+      id: 'cellular',
+      icon: <Zap size={20} className="text-adish-gold" />,
+      title: 'Cellular Energy',
+      content: 'Cordyceps militaris supports ATP production at the mitochondrial level, enhancing oxygen utilisation and endurance.'
+    },
+    {
+      id: 'adaptogen',
+      icon: <Shield size={20} className="text-adish-gold" />,
+      title: 'Adaptogenic Resilience',
+      content: 'As a true adaptogen, Cordyceps militaris helps modulate stress response and support adrenal function, enabling efficient recovery from stress.'
+    },
+    {
+      id: 'form',
+      icon: <Droplet size={20} className="text-adish-gold" />,
+      title: 'Flexible Form',
+      content: 'Our fine powder form allows you to mix with your preferred beverage or incorporate into smoothies, providing flexibility in consumption.'
+    },
+    {
+      id: 'tested',
+      icon: <FlaskConical size={20} className="text-adish-gold" />,
+      title: 'Lab Tested & Certified',
+      content: 'Every batch is independently lab tested for purity and potency, produced in ISO, FDA & HACCP certified facilities.'
+    }
+  ];
+
+  const items = product.id === 'performance-tincture' ? tinctureItems : powderItems;
+
+  return (
+    <div className="mt-16 pt-12 border-t-2 border-gray-200">
+      <h2 className="text-4xl font-serif font-bold text-adish-dark mb-8">About this Product</h2>
+      <div className="space-y-3">
+        {items.map(item => (
+          <div key={item.id} className="border border-adish-beige rounded-lg hover:border-adish-gold transition-colors">
+            <button
+              onClick={() => toggleExpand(item.id)}
+              className="w-full px-5 py-4 flex items-center justify-between hover:bg-adish-beige/30 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                {item.icon}
+                <span className="text-lg font-bold text-adish-dark">{item.title}</span>
+              </div>
+              <ChevronDown
+                size={20}
+                className={`text-adish-gold transition-transform ${expanded[item.id] ? 'rotate-180' : ''}`}
+              />
+            </button>
+            {expanded[item.id] && (
+              <div className="px-5 py-4 border-t border-adish-beige/50 bg-white/50">
+                <p className="text-adish-green text-sm leading-relaxed font-medium">
+                  {item.content}
+                </p>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
