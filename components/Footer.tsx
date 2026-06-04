@@ -14,7 +14,10 @@ export default function Footer() {
                 alt="Adish Ventures Logo"
                 className="h-12 w-12 object-contain"
               />
-              <span className="text-lg font-serif font-bold">Adish Ventures</span>
+              <div className="flex flex-col">
+                <span className="text-lg font-serif font-bold">Ethnobotanical</span>
+                <span className="text-sm font-serif font-bold">by Adish Ventures</span>
+              </div>
             </div>
             <p className="text-yellow-50 text-sm">
               Redefining Botanical Vitality through 2,000 years of Himalayan wisdom and modern science.

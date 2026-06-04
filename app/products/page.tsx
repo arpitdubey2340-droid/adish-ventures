@@ -209,11 +209,11 @@ export default function Products() {
                       </button>
                     </div>
 
+                    {/* About This Product Section */}
+                    <ExpandableAboutSection product={product} />
+
                   </div>
                 </div>
-
-                {/* About This Product Section - Expandable */}
-                <ExpandableAboutSection product={product} />
 
                 {/* Below Product: Usage Guide Section */}
                 <div className="mt-16 pt-12 pb-12 px-6 sm:px-8 rounded-lg bg-adish-beige border-t-2 border-gray-200 -mx-6 sm:-mx-8">
@@ -293,115 +293,64 @@ export default function Products() {
 }
 
 function ExpandableAboutSection({ product }: { product: any }) {
-  const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
-
-  const toggleExpand = (id: string) => {
-    setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
-  };
-
   const tinctureItems = [
     {
-      id: 'energy',
-      icon: <Zap size={20} className="text-adish-gold" />,
-      title: 'Energy & Daily Performance',
-      content: 'Cordyceps militaris has been studied for its ability to enhance ATP (adenosine triphosphate) production at the cellular level, supporting oxygen utilisation and endurance — making it a popular choice among athletes.'
+      title: 'ENERGY & DAILY PERFORMANCE',
+      content: 'Cordyceps mushroom is commonly used in herbal and mushroom supplement routines to support steady energy and an active lifestyle throughout the day'
     },
     {
-      id: 'adaptogen',
-      icon: <Shield size={20} className="text-adish-gold" />,
-      title: 'Adaptogenic Balance',
-      content: 'Cordyceps militaris works as a true adaptogen by helping to modulate cortisol levels and support adrenal function, enabling the body to respond more efficiently to physical and mental stress.'
+      title: 'ADAPTOGENIC BALANCE',
+      content: 'Cordyceps, an adaptogenic mushroom, helps the body adapt to occasional stress and maintain balance, supporting overall vitality as part of a consistent daily routine'
     },
     {
-      id: 'libido',
-      icon: <Heart size={20} className="text-adish-gold" />,
-      title: 'Libido & Sexual Vitality',
-      content: 'Cordyceps militaris has a long history of traditional use for reproductive health and is supported by emerging research suggesting it may help promote healthy testosterone levels and improve sexual function.'
+      title: 'FRUITING BODY EXTRACT FOR MAXIMUM POTENCY',
+      content: 'Made from fruiting bodies, not mycelium, using organic mushrooms and careful extraction to preserve key compounds that support natural energy and vitality'
     },
     {
-      id: 'fruiting',
-      icon: <Leaf size={20} className="text-adish-gold" />,
-      title: 'Fruiting Body Extract',
-      content: 'Our extract is derived exclusively from Cordyceps militaris fruiting bodies — the natural source of Cordycepin, a bioactive compound unique to this species and linked to immune modulation and cellular health.'
+      title: 'ALCOHOL-FREE, CLEAN FORMULA',
+      content: 'Made with vegetable glycerine for a smoother taste & gentler daily use. Free from fillers, artificial additives, gluten, and GMOs for a pure Cordyceps mushroom supplement'
     },
     {
-      id: 'absorption',
-      icon: <Droplet size={20} className="text-adish-gold" />,
-      title: 'Fast Absorption',
-      content: 'Liquid Cordyceps militaris extract absorbs faster than capsules or powders, allowing key compounds like Cordycepin and Adenosine to enter the bloodstream more readily.'
-    },
-    {
-      id: 'tested',
-      icon: <FlaskConical size={20} className="text-adish-gold" />,
-      title: 'Lab Tested & Certified',
-      content: 'Advanced ultrasonic extraction maximises Cordyceps-specific actives. Every batch is independently lab tested for purity and potency, produced in ISO, FDA & HACCP certified facilities.'
+      title: 'LIQUID FORM FOR FAST ABSORPTION',
+      content: 'Liquid may absorb faster than capsules or mushroom powders, helping your body access beneficial compounds more efficiently. Take 1-2 ml directly or add to pre or post workout shakes'
     }
   ];
 
   const powderItems = [
     {
-      id: 'fruiting',
-      icon: <Leaf size={20} className="text-adish-gold" />,
-      title: 'Pure Fruiting Body',
-      content: 'Our Cordyceps Potency Powder is derived exclusively from Cordyceps militaris fruiting bodies — the natural source of Cordycepin, a bioactive compound linked to cellular energy production.'
+      title: 'ENERGY & DAILY PERFORMANCE',
+      content: 'Cordyceps mushroom is commonly used in herbal and mushroom supplement routines to support steady energy and an active lifestyle throughout the day'
     },
     {
-      id: 'cellular',
-      icon: <Zap size={20} className="text-adish-gold" />,
-      title: 'Cellular Energy',
-      content: 'Cordyceps militaris supports ATP production at the mitochondrial level, enhancing oxygen utilisation and endurance.'
+      title: 'ADAPTOGENIC BALANCE',
+      content: 'Cordyceps, an adaptogenic mushroom, helps the body adapt to occasional stress and maintain balance, supporting overall vitality as part of a consistent daily routine'
     },
     {
-      id: 'adaptogen',
-      icon: <Shield size={20} className="text-adish-gold" />,
-      title: 'Adaptogenic Resilience',
-      content: 'As a true adaptogen, Cordyceps militaris helps modulate stress response and support adrenal function, enabling efficient recovery from stress.'
+      title: 'FRUITING BODY EXTRACT FOR MAXIMUM POTENCY',
+      content: 'Made from fruiting bodies, not mycelium, using organic mushrooms and careful extraction to preserve key compounds that support natural energy and vitality'
     },
     {
-      id: 'form',
-      icon: <Droplet size={20} className="text-adish-gold" />,
-      title: 'Flexible Form',
-      content: 'Our fine powder form allows you to mix with your preferred beverage or incorporate into smoothies, providing flexibility in consumption.'
+      title: 'FLEXIBLE FORM',
+      content: 'Our fine powder form allows you to mix with your preferred beverage or incorporate into smoothies, providing flexibility in consumption'
     },
     {
-      id: 'tested',
-      icon: <FlaskConical size={20} className="text-adish-gold" />,
-      title: 'Lab Tested & Certified',
-      content: 'Every batch is independently lab tested for purity and potency, produced in ISO, FDA & HACCP certified facilities.'
+      title: 'LAB TESTED & CERTIFIED',
+      content: 'Every batch is independently lab tested for purity and potency, produced in ISO, FDA & HACCP certified facilities'
     }
   ];
 
   const items = product.id === 'performance-tincture' ? tinctureItems : powderItems;
 
   return (
-    <div className="mt-16 pt-12 border-t-2 border-gray-200">
-      <h2 className="text-4xl font-serif font-bold text-adish-dark mb-8">About this Product</h2>
-      <div className="space-y-3">
-        {items.map(item => (
-          <div key={item.id} className="border border-adish-beige rounded-lg hover:border-adish-gold transition-colors">
-            <button
-              onClick={() => toggleExpand(item.id)}
-              className="w-full px-5 py-4 flex items-center justify-between hover:bg-adish-beige/30 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                {item.icon}
-                <span className="text-lg font-bold text-adish-dark">{item.title}</span>
-              </div>
-              <ChevronDown
-                size={20}
-                className={`text-adish-gold transition-transform ${expanded[item.id] ? 'rotate-180' : ''}`}
-              />
-            </button>
-            {expanded[item.id] && (
-              <div className="px-5 py-4 border-t border-adish-beige/50 bg-white/50">
-                <p className="text-adish-green text-sm leading-relaxed font-medium">
-                  {item.content}
-                </p>
-              </div>
-            )}
-          </div>
+    <div className="mt-8 pt-8 pb-8 w-full">
+      <h2 className="text-2xl font-bold text-adish-dark mb-4">About this item</h2>
+      <ul className="list-disc list-outside pl-5 space-y-3">
+        {items.map((item, idx) => (
+          <li key={idx} className="text-adish-dark text-sm leading-relaxed">
+            <span className="font-bold">{item.title}:</span> {item.content}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
