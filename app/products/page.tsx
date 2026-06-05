@@ -1,7 +1,7 @@
 'use client';
 
 import { products } from '@/lib/products';
-import { ShoppingCart, Check, Star, ShieldCheck, ChevronDown, Zap, Shield, Heart, Leaf, Droplet, FlaskConical } from 'lucide-react';
+import { ShoppingCart, Check, Star, ShieldCheck, ChevronDown, Plus } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import ImageGallery from '@/components/ImageGallery';
 
@@ -293,64 +293,84 @@ export default function Products() {
 }
 
 function ExpandableAboutSection({ product }: { product: any }) {
+  const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({ 0: true });
+
   const tinctureItems = [
     {
-      title: 'ENERGY & DAILY PERFORMANCE',
+      title: 'Product Description',
       content: 'Cordyceps mushroom is commonly used in herbal and mushroom supplement routines to support steady energy and an active lifestyle throughout the day'
     },
     {
-      title: 'ADAPTOGENIC BALANCE',
+      title: 'Key benefits',
       content: 'Cordyceps, an adaptogenic mushroom, helps the body adapt to occasional stress and maintain balance, supporting overall vitality as part of a consistent daily routine'
     },
     {
-      title: 'FRUITING BODY EXTRACT FOR MAXIMUM POTENCY',
+      title: 'Key ingredients',
       content: 'Made from fruiting bodies, not mycelium, using organic mushrooms and careful extraction to preserve key compounds that support natural energy and vitality'
     },
     {
-      title: 'ALCOHOL-FREE, CLEAN FORMULA',
+      title: 'Suited for',
       content: 'Made with vegetable glycerine for a smoother taste & gentler daily use. Free from fillers, artificial additives, gluten, and GMOs for a pure Cordyceps mushroom supplement'
     },
     {
-      title: 'LIQUID FORM FOR FAST ABSORPTION',
+      title: 'Lab reports',
       content: 'Liquid may absorb faster than capsules or mushroom powders, helping your body access beneficial compounds more efficiently. Take 1-2 ml directly or add to pre or post workout shakes'
     }
   ];
 
   const powderItems = [
     {
-      title: 'ENERGY & DAILY PERFORMANCE',
+      title: 'Product Description',
       content: 'Cordyceps mushroom is commonly used in herbal and mushroom supplement routines to support steady energy and an active lifestyle throughout the day'
     },
     {
-      title: 'ADAPTOGENIC BALANCE',
+      title: 'Key benefits',
       content: 'Cordyceps, an adaptogenic mushroom, helps the body adapt to occasional stress and maintain balance, supporting overall vitality as part of a consistent daily routine'
     },
     {
-      title: 'FRUITING BODY EXTRACT FOR MAXIMUM POTENCY',
+      title: 'Key ingredients',
       content: 'Made from fruiting bodies, not mycelium, using organic mushrooms and careful extraction to preserve key compounds that support natural energy and vitality'
     },
     {
-      title: 'FLEXIBLE FORM',
+      title: 'Suited for',
       content: 'Our fine powder form allows you to mix with your preferred beverage or incorporate into smoothies, providing flexibility in consumption'
     },
     {
-      title: 'LAB TESTED & CERTIFIED',
+      title: 'Lab reports',
       content: 'Every batch is independently lab tested for purity and potency, produced in ISO, FDA & HACCP certified facilities'
     }
   ];
 
   const items = product.id === 'performance-tincture' ? tinctureItems : powderItems;
 
+  const toggleExpanded = (idx: number) => {
+    setExpanded(prev => ({ ...prev, [idx]: !prev[idx] }));
+  };
+
   return (
     <div className="mt-8 pt-8 pb-8 w-full">
-      <h2 className="text-2xl font-bold text-adish-dark mb-4">About this item</h2>
-      <ul className="list-disc list-outside pl-5 space-y-3">
+      <h2 className="text-2xl font-bold text-adish-dark mb-6">About this item</h2>
+      <div className="space-y-3">
         {items.map((item, idx) => (
-          <li key={idx} className="text-adish-dark text-sm leading-relaxed">
-            <span className="font-bold">{item.title}:</span> {item.content}
-          </li>
+          <div key={idx} className="border border-gray-300 rounded-lg overflow-hidden">
+            <button
+              onClick={() => toggleExpanded(idx)}
+              className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
+            >
+              <h3 className="font-bold text-adish-dark text-base">{item.title}</h3>
+              <Plus
+                size={20}
+                className={`text-adish-dark transition-transform ${expanded[idx] ? 'rotate-45' : ''}`}
+              />
+            </button>
+            {expanded[idx] && (
+              <div className="px-4 py-3 border-t border-gray-300 bg-gray-50">
+                <p className="text-adish-dark text-sm leading-relaxed">{item.content}</p>
+              </div>
+            )}
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
