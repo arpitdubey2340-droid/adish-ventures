@@ -22,25 +22,25 @@ export default function Navigation() {
   return (
     <nav className="sticky top-0 z-50 bg-white border-b-2 border-adish-beige w-full overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition">
             <img
               src="/images/branding/logo.png"
               alt="Adish Ventures Logo"
-              className="h-14 w-14 object-contain"
+              className="h-16 w-16 object-contain"
             />
-            <span className="text-xl sm:text-2xl font-serif font-bold text-gray-900">
+            <span className="text-2xl sm:text-3xl font-serif font-bold text-gray-900">
               Ethnobotanical
             </span>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
-            <Link href="/" className="text-adish-dark hover:text-adish-gold transition">
+            <Link href="/" className="text-adish-dark text-lg hover:text-adish-gold transition">
               Home
             </Link>
-            <Link href="/products" className="text-adish-dark hover:text-adish-gold transition">
+            <Link href="/products" className="text-adish-dark text-lg hover:text-adish-gold transition">
               Shop
             </Link>
 
@@ -50,8 +50,8 @@ export default function Navigation() {
               onMouseEnter={() => setIsAboutOpen(true)}
               onMouseLeave={() => setIsAboutOpen(false)}
             >
-              <button className="text-adish-dark hover:text-adish-gold transition flex items-center gap-1">
-                About <ChevronDown size={16} />
+              <button className="text-adish-dark text-lg hover:text-adish-gold transition flex items-center gap-1">
+                About <ChevronDown size={18} />
               </button>
 
               {isAboutOpen && (
@@ -76,7 +76,7 @@ export default function Navigation() {
           {/* Cart & Mobile Menu */}
           <div className="flex items-center space-x-4">
             <Link href="/cart" className="relative">
-              <ShoppingCart className="w-6 h-6 text-gray-900 hover:text-yellow-600 transition" />
+              <ShoppingCart className="w-7 h-7 text-gray-900 hover:text-yellow-600 transition" />
               {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
                   {cartCount}

@@ -63,24 +63,24 @@ export default function Products() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
-      <section className="bg-gradient-to-r from-adish-green to-adish-dark py-12 px-4 w-full overflow-x-hidden">
-        <div className="max-w-7xl mx-auto w-full">
-          <h1 className="text-5xl font-serif font-bold text-white mb-4">
+      <section className="bg-gray-100 py-16 w-full" style={{borderBottom: '2px solid rgba(201, 168, 76, 0.5)'}}>
+        <div className="max-w-7xl mx-auto px-4 w-full">
+          <h1 className="text-6xl font-serif font-bold text-adish-dark mb-4">
             Our Products
           </h1>
-          <p className="text-xl text-adish-beige max-w-2xl">
+          <p className="text-3xl text-adish-dark max-w-3xl font-serif font-light leading-relaxed tracking-wide">
             Premium Cordyceps Militaris supplements engineered for performance, vitality, and wellness
           </p>
         </div>
       </section>
 
       {/* Products - Stacked Vertically */}
-      <section className="py-16 px-4 w-full overflow-x-hidden">
+      <section className="py-8 px-4 w-full overflow-x-hidden">
         <div className="max-w-7xl mx-auto w-full">
           {products.map((product, idx) => (
             <div key={product.id} id={`product-${product.id}`} className="w-full overflow-x-hidden">
               {/* Product Section */}
-              <div className="py-12 w-full overflow-x-hidden">
+              <div className="py-8 w-full overflow-x-hidden">
                 <div className="grid lg:grid-cols-2 gap-4 lg:gap-12 items-start w-full max-w-full overflow-x-hidden">
                   {/* Left: Product Image Gallery */}
                   <div className="w-full overflow-x-hidden min-w-0">
@@ -100,13 +100,13 @@ export default function Products() {
                       <div className="flex gap-1">
                         {[...Array(5)].map((_, i) => {
                           if (i < 4) {
-                            return <Star key={i} size={20} className="fill-adish-gold text-adish-gold" />;
+                            return <Star key={i} size={22} style={{fill: '#c9a84c', stroke: '#c9a84c', strokeWidth: 0}} />;
                           } else {
                             return (
                               <div key={i} className="relative">
-                                <Star size={20} className="fill-gray-300 text-gray-300" />
+                                <Star size={22} style={{fill: '#e5e7eb', stroke: '#e5e7eb', strokeWidth: 0}} />
                                 <div className="absolute top-0 left-0 overflow-hidden w-1/2">
-                                  <Star size={20} className="fill-adish-gold text-adish-gold" />
+                                  <Star size={22} style={{fill: '#c9a84c', stroke: '#c9a84c', strokeWidth: 0}} />
                                 </div>
                               </div>
                             );
@@ -280,9 +280,7 @@ export default function Products() {
 
               {/* Divider Between Products */}
               {idx === 0 && (
-                <div className="my-12 flex justify-center">
-                  <div className="w-32 h-1 bg-gradient-to-r from-transparent via-adish-gold to-transparent rounded-full"></div>
-                </div>
+                <div className="my-16 border-t-2 border-adish-gold opacity-60"></div>
               )}
             </div>
           ))}
