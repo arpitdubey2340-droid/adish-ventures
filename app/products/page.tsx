@@ -295,47 +295,51 @@ function ExpandableAboutSection({ product }: { product: any }) {
 
   const tinctureItems = [
     {
-      title: 'Product Description',
-      content: 'Cordyceps mushroom is commonly used in herbal and mushroom supplement routines to support steady energy and an active lifestyle throughout the day'
+      title: 'ENERGY & DAILY PERFORMANCE',
+      content: 'Cordyceps militaris has been studied for its ability to enhance ATP (adenosine triphosphate) production at the cellular level, supporting oxygen utilisation and endurance — making it a popular choice among athletes and those seeking sustained energy without stimulants.'
     },
     {
-      title: 'Key benefits',
-      content: 'Cordyceps, an adaptogenic mushroom, helps the body adapt to occasional stress and maintain balance, supporting overall vitality as part of a consistent daily routine'
+      title: 'ADAPTOGENIC BALANCE',
+      content: 'Cordyceps militaris works as a true adaptogen by helping to modulate cortisol levels and support adrenal function, enabling the body to respond more efficiently to physical and mental stress while promoting hormonal balance and resilience.'
     },
     {
-      title: 'Key ingredients',
-      content: 'Made from fruiting bodies, not mycelium, using organic mushrooms and careful extraction to preserve key compounds that support natural energy and vitality'
+      title: 'LIBIDO & SEXUAL VITALITY SUPPORT',
+      content: 'Cordyceps militaris has a long history of traditional use for reproductive health and is supported by emerging research suggesting it may help promote healthy testosterone levels, improve sexual function, and support libido in both men and women — likely through its influence on adrenal and hormonal pathways alongside its energy-enhancing properties.'
     },
     {
-      title: 'Suited for',
-      content: 'Made with vegetable glycerine for a smoother taste & gentler daily use. Free from fillers, artificial additives, gluten, and GMOs for a pure Cordyceps mushroom supplement'
+      title: 'FRUITING BODY EXTRACT FOR MAXIMUM POTENCY',
+      content: 'Our extract is derived exclusively from Cordyceps militaris fruiting bodies — the natural source of Cordycepin (3\'-deoxyadenosine), a bioactive compound unique to this species and linked to immune modulation, cellular health, and vitality support.'
     },
     {
-      title: 'Lab reports',
-      content: 'Liquid may absorb faster than capsules or mushroom powders, helping your body access beneficial compounds more efficiently. Take 1-2 ml directly or add to pre or post workout shakes'
+      title: 'LIQUID FORM FOR FAST ABSORPTION',
+      content: 'Liquid Cordyceps militaris extract absorbs faster than capsules or powders, allowing key compounds like Cordycepin and Adenosine to enter the bloodstream more readily — ideal for pre- or post-workout use or as part of your morning routine.'
+    },
+    {
+      title: 'ULTRASONICALLY EXTRACTED & LAB TESTED',
+      content: 'Advanced ultrasonic extraction maximises the release of Cordyceps militaris-specific actives including Beta-glucans, Cordycepin, and Adenosine. Every batch is independently lab tested for purity and potency, produced in ISO, FDA & HACCP certified facilities.'
     }
   ];
 
   const powderItems = [
     {
-      title: 'Product Description',
-      content: 'Cordyceps mushroom is commonly used in herbal and mushroom supplement routines to support steady energy and an active lifestyle throughout the day'
+      title: 'ENERGY & DAILY PERFORMANCE',
+      content: 'Cordyceps militaris has been studied for its ability to enhance ATP (adenosine triphosphate) production at the cellular level, supporting oxygen utilisation and endurance — making it a popular choice among athletes and those seeking sustained energy without stimulants.'
     },
     {
-      title: 'Key benefits',
-      content: 'Cordyceps, an adaptogenic mushroom, helps the body adapt to occasional stress and maintain balance, supporting overall vitality as part of a consistent daily routine'
+      title: 'ADAPTOGENIC BALANCE',
+      content: 'Cordyceps militaris works as a true adaptogen by helping to modulate cortisol levels and support adrenal function, enabling the body to respond more efficiently to physical and mental stress while promoting hormonal balance and resilience.'
     },
     {
-      title: 'Key ingredients',
-      content: 'Made from fruiting bodies, not mycelium, using organic mushrooms and careful extraction to preserve key compounds that support natural energy and vitality'
+      title: 'LIBIDO & SEXUAL VITALITY SUPPORT',
+      content: 'Cordyceps militaris has a long history of traditional use for reproductive health and is supported by emerging research suggesting it may help promote healthy testosterone levels, improve sexual function, and support libido in both men and women — likely through its influence on adrenal and hormonal pathways alongside its energy-enhancing properties.'
     },
     {
-      title: 'Suited for',
-      content: 'Our fine powder form allows you to mix with your preferred beverage or incorporate into smoothies, providing flexibility in consumption'
+      title: 'FRUITING BODY EXTRACT FOR MAXIMUM POTENCY',
+      content: 'Our extract is derived exclusively from Cordyceps militaris fruiting bodies — the natural source of Cordycepin (3\'-deoxyadenosine), a bioactive compound unique to this species and linked to immune modulation, cellular health, and vitality support.'
     },
     {
-      title: 'Lab reports',
-      content: 'Every batch is independently lab tested for purity and potency, produced in ISO, FDA & HACCP certified facilities'
+      title: 'ULTRASONICALLY EXTRACTED & LAB TESTED',
+      content: 'Advanced ultrasonic extraction maximises the release of Cordyceps militaris-specific actives including Beta-glucans, Cordycepin, and Adenosine. Every batch is independently lab tested for purity and potency, produced in ISO, FDA & HACCP certified facilities.'
     }
   ];
 
