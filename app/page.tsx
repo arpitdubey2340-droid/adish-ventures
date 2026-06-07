@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ArrowRight, Zap, Leaf, Target } from 'lucide-react';
 import Button from '@/components/Button';
+import OffersBelt from '@/components/OffersBelt';
 
 export default function Home() {
   const handleAddToCart = (productId: string, productName: string, price: number) => {
@@ -62,9 +63,15 @@ export default function Home() {
                 Learn More
               </Link>
             </div>
+
           </div>
         </div>
       </section>
+
+      {/* Floating Offers Belt - Outside Section */}
+      <div className="mt-16">
+        <OffersBelt />
+      </div>
 
       {/* Product Showcase with Real Images */}
       <section className="py-20 px-4 bg-yellow-50">

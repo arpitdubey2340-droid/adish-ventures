@@ -4,6 +4,7 @@ import { products } from '@/lib/products';
 import { ShoppingCart, Check, Star, ShieldCheck, ChevronDown, Plus } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import ImageGallery from '@/components/ImageGallery';
+import CertificationsSection from '@/components/CertificationsSection';
 
 export default function Products() {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
@@ -284,6 +285,9 @@ export default function Products() {
               )}
             </div>
           ))}
+
+          {/* Certifications Section - At the End of Page */}
+          <CertificationsSection />
         </div>
       </section>
     </div>

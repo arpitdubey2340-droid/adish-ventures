@@ -1,3 +1,7 @@
+'use client';
+
+import CertificationsSection from '@/components/CertificationsSection';
+
 export default function About() {
   return (
     <div className="min-h-screen bg-white">
@@ -92,6 +96,9 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Certifications Section */}
+      <CertificationsSection />
     </div>
   );
 }

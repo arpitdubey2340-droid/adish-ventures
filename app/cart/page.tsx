@@ -42,15 +42,44 @@ export default function CartImproved() {
       removeItem(itemId);
       return;
     }
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: newQuantity } : item
-      )
+    const updatedItems = cartItems.map((item) =>
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
     );
+    setCartItems(updatedItems);
+    // Update localStorage
+    const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    let quantityChange = newQuantity - (cartItems.find(item => item.id === itemId)?.quantity || 0);
+    if (quantityChange > 0) {
+      const itemToAdd = currentCart.find((item: any) => item.id === itemId);
+      for (let i = 0; i < quantityChange; i++) {
+        currentCart.push(itemToAdd);
+      }
+    } else {
+      quantityChange = Math.abs(quantityChange);
+      for (let i = 0; i < quantityChange; i++) {
+        const index = currentCart.findIndex((item: any) => item.id === itemId);
+        if (index > -1) {
+          currentCart.splice(index, 1);
+        }
+      }
+    }
+    localStorage.setItem('cart', JSON.stringify(currentCart));
   };
 
   const removeItem = (itemId: string) => {
-    setCartItems(cartItems.filter((item) => item.id !== itemId));
+    const updatedCart = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(updatedCart);
+    // Update localStorage
+    const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const newCart = currentCart.filter((item: any) => item.id !== itemId);
+    localStorage.setItem('cart', JSON.stringify(newCart));
+  };
+
+  const clearCart = () => {
+    if (window.confirm('Are you sure you want to clear your cart?')) {
+      setCartItems([]);
+      localStorage.removeItem('cart');
+    }
   };
 
   const applyPromoCode = () => {
@@ -152,10 +181,16 @@ export default function CartImproved() {
             {/* Cart Items (2/3 width) */}
             <div className="lg:col-span-2">
               <div className="bg-white border-2 border-gray-200 rounded-lg overflow-hidden">
-                <div className="bg-gray-50 px-6 py-4 border-b-2 border-gray-200">
+                <div className="bg-gray-50 px-6 py-4 border-b-2 border-gray-200 flex justify-between items-center">
                   <h3 className="text-xl font-bold text-gray-900">
                     Items in Cart ({totalItems})
                   </h3>
+                  <button
+                    onClick={clearCart}
+                    className="text-sm font-bold text-red-500 hover:text-red-700 hover:bg-red-50 px-3 py-1 rounded transition"
+                  >
+                    🗑️ Clear Cart
+                  </button>
                 </div>
 
                 <div className="space-y-0 divide-y-2 divide-gray-200">
