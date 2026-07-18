@@ -3,6 +3,13 @@ export interface Product {
   name: string;
   category: string;
   price: number;
+  originalPrice?: number;
+  claim?: string;
+  rating?: number;
+  reviewCount?: number;
+  bestSeller?: boolean;
+  freeShipping?: boolean;
+  stockCount?: number;
   description: string;
   image: string;
   imageAlt: string;
@@ -23,6 +30,13 @@ export const products: Product[] = [
     name: "Cordyceps Potency Powder",
     category: "Powder",
     price: 1000,
+    originalPrice: 1200,
+    claim: "100% Fruiting Body",
+    rating: 4.5,
+    reviewCount: 1247,
+    bestSeller: true,
+    freeShipping: true,
+    stockCount: 34,
     description: "Engineered for sustained vitality and performance optimization",
     image: "/images/products/powder.avif",
     imageAlt: "Cordyceps Potency Powder",
@@ -59,6 +73,13 @@ Multi-System Benefits:
     name: "Cordyceps Endurance Tincture",
     category: "Tincture",
     price: 1000,
+    originalPrice: 1200,
+    claim: "Alcohol-Free Dual Extract",
+    rating: 4.5,
+    reviewCount: 1247,
+    bestSeller: false,
+    freeShipping: true,
+    stockCount: 28,
     description: "Sublingual dual-extract for rapid, sustained performance enhancement",
     image: "/images/products/tincture-real.avif",
     imageAlt: "Cordyceps Endurance Tincture",

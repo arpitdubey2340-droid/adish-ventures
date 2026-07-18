@@ -1,15 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ShoppingCart } from 'lucide-react';
 import Button from '@/components/Button';
 import Link from 'next/link';
+import { toast } from '@/components/Toast';
 
 interface CartItem {
   id: string;
   name: string;
   price: number;
   quantity: number;
+  image?: string;
 }
 
 interface FormData {
@@ -96,8 +98,8 @@ export default function Checkout() {
   };
 
   const handlePlaceOrder = () => {
-    // TODO: Integrate with payment gateway
-    alert('Order submitted! Payment gateway integration coming soon.');
+    // TODO: Integrate with payment gateway (Razorpay is in package.json, not yet wired)
+    toast('Order submitted! Payment gateway integration coming soon.', 'success');
     console.log({
       shipping: shippingForm,
       billing: sameAsShipping ? shippingForm : billingForm,
@@ -111,10 +113,12 @@ export default function Checkout() {
   const applyPromoCode = () => {
     if (promoCode === 'SAVE10') {
       setDiscount(subtotal * 0.1);
+      toast('Promo code applied — 10% off!', 'success');
     } else if (promoCode === 'SAVE20') {
       setDiscount(subtotal * 0.2);
+      toast('Promo code applied — 20% off!', 'success');
     } else {
-      alert('Invalid promo code');
+      toast('Invalid promo code', 'error');
       setDiscount(0);
     }
   };
@@ -499,11 +503,18 @@ export default function Checkout() {
               {/* Items */}
               <div className="space-y-4 mb-6 pb-6 border-b-2 border-adish-gold/30">
                 {cart.map((item) => (
-                  <div key={item.id} className="flex justify-between text-sm">
-                    <span className="text-adish-green">
+                  <div key={item.id} className="flex items-center gap-3 text-sm">
+                    <div className="w-12 h-12 rounded-lg bg-white overflow-hidden shrink-0 flex items-center justify-center border border-adish-gold/20">
+                      {item.image ? (
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <ShoppingCart size={18} className="text-gray-400" />
+                      )}
+                    </div>
+                    <span className="flex-1 text-adish-green">
                       {item.name} × {item.quantity}
                     </span>
-                    <span className="font-bold text-adish-dark">
+                    <span className="font-bold text-adish-dark shrink-0">
                       ₹{(item.price * item.quantity).toLocaleString()}
                     </span>
                   </div>

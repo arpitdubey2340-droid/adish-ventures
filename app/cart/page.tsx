@@ -5,12 +5,15 @@ import { ShoppingCart, Trash2, Plus, Minus } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Button from '@/components/Button';
 import ProductCard from '@/components/ProductCard';
+import { addToCart, clearCart as clearCartStorage } from '@/lib/cart';
+import { toast } from '@/components/Toast';
 
 interface CartItem {
   id: string;
   name: string;
   price: number;
   quantity: number;
+  image?: string;
 }
 
 export default function CartImproved() {
@@ -78,17 +81,20 @@ export default function CartImproved() {
   const clearCart = () => {
     if (window.confirm('Are you sure you want to clear your cart?')) {
       setCartItems([]);
-      localStorage.removeItem('cart');
+      clearCartStorage();
+      toast('Cart cleared', 'info');
     }
   };
 
   const applyPromoCode = () => {
     if (promoCode === 'SAVE10') {
       setDiscount(subtotal * 0.1);
+      toast('Promo code applied — 10% off!', 'success');
     } else if (promoCode === 'SAVE20') {
       setDiscount(subtotal * 0.2);
+      toast('Promo code applied — 20% off!', 'success');
     } else {
-      alert('Invalid promo code');
+      toast('Invalid promo code', 'error');
       setDiscount(0);
     }
   };
@@ -197,11 +203,21 @@ export default function CartImproved() {
                   {cartItems.map((item) => (
                     <div key={item.id} className="p-6 hover:bg-gray-50 transition">
                       <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <h4 className="text-lg font-bold text-gray-900">{item.name}</h4>
-                          <p className="text-lg text-adish-gold font-bold">
-                            ₹{item.price.toLocaleString()}
-                          </p>
+                        <div className="flex items-start gap-4">
+                          {/* Product thumbnail */}
+                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg bg-gray-100 overflow-hidden shrink-0 flex items-center justify-center">
+                            {item.image ? (
+                              <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                            ) : (
+                              <ShoppingCart size={24} className="text-gray-400" />
+                            )}
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-bold text-gray-900">{item.name}</h4>
+                            <p className="text-lg text-adish-gold font-bold">
+                              ₹{item.price.toLocaleString()}
+                            </p>
+                          </div>
                         </div>
                         <button
                           onClick={() => removeItem(item.id)}
@@ -257,10 +273,12 @@ export default function CartImproved() {
                         key={product.id}
                         {...product}
                         onAddToCart={() => {
-                          const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-                          cart.push({ id: product.id, name: product.name, price: product.price });
-                          localStorage.setItem('cart', JSON.stringify(cart));
-                          window.dispatchEvent(new Event('storage'));
+                          addToCart({
+                            id: product.id,
+                            name: product.name,
+                            price: product.price,
+                            image: product.image,
+                          });
                         }}
                       />
                     ))}

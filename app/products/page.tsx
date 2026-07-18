@@ -5,6 +5,7 @@ import { ShoppingCart, Check, Star, ShieldCheck, ChevronDown, Plus } from 'lucid
 import { useState, useEffect } from 'react';
 import ImageGallery from '@/components/ImageGallery';
 import CertificationsSection from '@/components/CertificationsSection';
+import { addToCart } from '@/lib/cart';
 
 export default function Products() {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
@@ -23,14 +24,11 @@ export default function Products() {
     }
   }, []);
 
-  const handleAddToCart = (productId: string, productName: string, price: number) => {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const handleAddToCart = (productId: string, productName: string, price: number, image: string) => {
     const qty = quantities[productId] || 1;
-    for (let i = 0; i < qty; i++) {
-      cart.push({ id: productId, name: productName, price });
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    window.dispatchEvent(new Event('storage'));
+    // Shared helper handles storage + cart badge + mini-cart drawer.
+    addToCart({ id: productId, name: productName, price, image }, qty);
+    // Keep the in-card "Added!" checkmark animation.
     setSelectedProduct(productId);
     setTimeout(() => setSelectedProduct(null), 2000);
   };
@@ -183,7 +181,7 @@ export default function Products() {
 
                       {/* Add to Cart Button */}
                       <button
-                        onClick={() => handleAddToCart(product.id, product.name, product.price)}
+                        onClick={() => handleAddToCart(product.id, product.name, product.price, product.image)}
                         className={`px-6 py-2 rounded-lg font-bold text-white transition-all flex items-center justify-center gap-2 text-sm shadow-md ${
                           selectedProduct === product.id
                             ? 'bg-green-600'
@@ -203,7 +201,7 @@ export default function Products() {
 
                       {/* Buy Now Button */}
                       <button
-                        onClick={() => handleAddToCart(product.id, product.name, product.price)}
+                        onClick={() => handleAddToCart(product.id, product.name, product.price, product.image)}
                         className="px-6 py-2 rounded-lg font-bold bg-adish-gold text-adish-dark hover:bg-yellow-500 transition-all shadow-md text-sm flex items-center justify-center"
                       >
                         Buy Now

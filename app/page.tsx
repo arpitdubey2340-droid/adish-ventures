@@ -4,17 +4,12 @@ import Link from 'next/link';
 import { ArrowRight, Zap, Leaf, Target } from 'lucide-react';
 import Button from '@/components/Button';
 import OffersBelt from '@/components/OffersBelt';
+import { addToCart } from '@/lib/cart';
 
 export default function Home() {
-  const handleAddToCart = (productId: string, productName: string, price: number) => {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    cart.push({ id: productId, name: productName, price });
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Trigger storage event for cart update
-    window.dispatchEvent(new Event('storage'));
-
-    alert(`✅ ${productName} added to cart! Total items: ${cart.length}`);
+  const handleAddToCart = (productId: string, productName: string, price: number, image: string) => {
+    // Shared helper handles storage + cart badge + mini-cart drawer.
+    addToCart({ id: productId, name: productName, price, image });
   };
 
   return (
@@ -126,7 +121,7 @@ export default function Home() {
                   <span className="text-3xl font-bold text-gray-900">₹1,000</span>
                   <div className="flex gap-3">
                     <button
-                      onClick={() => handleAddToCart('cordyceps-powder', 'Cordyceps Potency Powder', 1000)}
+                      onClick={() => handleAddToCart('cordyceps-powder', 'Cordyceps Potency Powder', 1000, '/images/products/powder.avif')}
                       className="bg-green-700 text-white px-4 py-3 rounded-lg font-bold hover:bg-green-800 transition text-sm"
                     >
                       Add to Cart
@@ -179,7 +174,7 @@ export default function Home() {
                   <span className="text-3xl font-bold text-gray-900">₹1,000</span>
                   <div className="flex gap-3">
                     <button
-                      onClick={() => handleAddToCart('performance-tincture', 'Cordyceps Endurance Tincture', 1000)}
+                      onClick={() => handleAddToCart('performance-tincture', 'Cordyceps Endurance Tincture', 1000, '/images/products/tincture-real.avif')}
                       className="bg-green-700 text-white px-4 py-3 rounded-lg font-bold hover:bg-green-800 transition text-sm"
                     >
                       Add to Cart

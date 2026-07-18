@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { ToastContainer } from "@/components/Toast";
+import MiniCart from "@/components/MiniCart";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +38,8 @@ export default function RootLayout({
         <Navigation />
         <main className="flex-1 w-full overflow-x-hidden">{children}</main>
         <Footer />
+        <ToastContainer />
+        <MiniCart />
       </body>
     </html>
   );
