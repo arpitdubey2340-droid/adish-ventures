@@ -22,6 +22,10 @@ interface ProductCardProps {
   bestSeller?: boolean;
   freeShipping?: boolean;
   href?: string; // when set, image + title link through to the detail page
+  imageOverride?: string; // use a different image for this placement (e.g. lifestyle shot)
+  bullets?: { title: string; subtitle: string }[]; // homepage: title+subtitle bullets in place of rating/description
+  bulletIcon?: 'arrow' | 'star'; // gold marker style for bullets
+  ctaLabel?: string; // custom button label (e.g. "Shop now")
   onAddToCart: () => void;
   onBuyNow?: () => void;
   variant?: 'grid' | 'featured'; // featured for homepage, grid for product listing
@@ -42,6 +46,10 @@ export default function ProductCard({
   bestSeller,
   freeShipping,
   href,
+  imageOverride,
+  bullets,
+  bulletIcon = 'arrow',
+  ctaLabel,
   onAddToCart,
   onBuyNow,
   variant = 'grid',
@@ -170,7 +178,7 @@ export default function ProductCard({
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
       <Clickable className="relative h-48 bg-gray-100 overflow-hidden group block">
         <img
-          src={image}
+          src={imageOverride ?? image}
           alt={name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
@@ -199,11 +207,28 @@ export default function ProductCard({
           <h3 className="text-sm sm:text-base font-bold text-adish-dark mb-1 line-clamp-1">{name}</h3>
         </Clickable>
 
-        <div className="mb-2">
-          <StarRating rating={rating} count={reviewCount} size="sm" />
-        </div>
-
-        <p className="text-xs text-adish-green mb-3 line-clamp-2">{description}</p>
+        {bullets && bullets.length ? (
+          <ul className="space-y-2 mb-4 mt-1">
+            {bullets.map((b, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="text-adish-gold font-bold leading-5 shrink-0">
+                  {bulletIcon === 'star' ? '★' : '→'}
+                </span>
+                <div>
+                  <p className="text-sm font-bold text-adish-dark leading-tight">{b.title}</p>
+                  <p className="text-xs text-gray-500 leading-snug">{b.subtitle}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <>
+            <div className="mb-2">
+              <StarRating rating={rating} count={reviewCount} size="sm" />
+            </div>
+            <p className="text-xs text-adish-green mb-3 line-clamp-2">{description}</p>
+          </>
+        )}
 
         <div className="mb-3 flex items-baseline gap-2">
           <p className="text-lg sm:text-xl font-bold text-adish-gold">₹{price.toLocaleString()}</p>
@@ -222,7 +247,7 @@ export default function ProductCard({
           disabled={!inStock}
         >
           {added ? <Check size={16} /> : <ShoppingCart size={16} />}
-          {added ? 'Added ✓' : 'Add'}
+          {added ? 'Added ✓' : (ctaLabel ?? 'Add')}
         </Button>
       </div>
     </div>

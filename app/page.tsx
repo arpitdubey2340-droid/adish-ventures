@@ -1,64 +1,66 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Zap, Leaf, Target } from 'lucide-react';
+import { ArrowRight, Zap, Leaf, Target, Activity, Star, Truck, RotateCcw } from 'lucide-react';
 import Button from '@/components/Button';
 import OffersBelt from '@/components/OffersBelt';
+import ProductCard from '@/components/ProductCard';
+import { products } from '@/lib/products';
 import { addToCart } from '@/lib/cart';
 
-export default function Home() {
-  const handleAddToCart = (productId: string, productName: string, price: number, image: string) => {
-    // Shared helper handles storage + cart badge + mini-cart drawer.
-    addToCart({ id: productId, name: productName, price, image });
-  };
+// Homepage "OUR FORMULAS" cards: lifestyle image override + homeBullets (lib/products.ts).
+const homeCards = [
+  { id: 'cordyceps-powder', image: '/images/products/powder-lifestyle.avif', icon: 'arrow' as const },
+  { id: 'performance-tincture', image: '/images/products/tincture-lifestyle.avif', icon: 'star' as const },
+];
 
+export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Full Width Video Background */}
-      <section className="relative h-screen overflow-hidden flex items-center">
-        {/* Full Width Video Background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/videos/hero.mp4" type="video/mp4" />
-        </video>
+      {/* Hero Section */}
+      <section className="bg-adish-cream py-20 sm:py-28 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          {/* Trust line — stars only, no fabricated review count */}
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <span className="flex">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={18} style={{ fill: '#C8A854', stroke: 'none' }} />
+              ))}
+            </span>
+            <span className="text-sm font-semibold text-adish-dark">Trusted by early customers</span>
+          </div>
 
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+          {/* Headline */}
+          <h1 className="text-4xl sm:text-6xl font-serif font-bold text-adish-dark mb-4 tracking-tight">
+            Cordyceps, done right.
+          </h1>
+          <p className="text-lg sm:text-xl text-adish-green mb-10">
+            Sustained energy and endurance — without the crash.
+          </p>
 
-        {/* Text Content - Overlaid */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8 pt-16">
-          <div className="max-w-2xl">
-            <div className="mb-6">
-              <span className="inline-block bg-white text-adish-dark px-6 py-3 rounded-full text-sm font-bold shadow-xl">
-                REDEFINING BOTANICAL VITALITY
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight" style={{
-              color: '#FFFFFF',
-              textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 4px 16px rgba(0,0,0,0.6)',
-              letterSpacing: '-0.02em'
-            }}>
-              Discover the Power of Nature's Most Potent Adaptogen
-            </h1>
-            <p className="text-lg md:text-xl text-yellow-50 mb-8 leading-relaxed max-w-xl" style={{
-              textShadow: '0 1px 4px rgba(0,0,0,0.8)'
-            }}>
-              Explore the profound benefits of Cordyceps Militaris—engineered for performance, vitality, and wellness. 2,000 years of Himalayan wisdom meets modern science.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/products" className="btn-primary flex items-center justify-center gap-2 shadow-lg w-fit">
-                Shop Now <ArrowRight size={20} />
-              </Link>
-              <Link href="#benefits" className="btn-secondary flex items-center justify-center gap-2 w-fit">
-                Learn More
-              </Link>
-            </div>
+          {/* Benefit icons */}
+          <div className="flex items-center justify-center gap-10 sm:gap-16 mb-10">
+            {[
+              { Icon: Zap, label: 'Energy' },
+              { Icon: Activity, label: 'Endurance' },
+              { Icon: Leaf, label: 'Natural' },
+            ].map(({ Icon, label }) => (
+              <div key={label} className="flex flex-col items-center gap-2">
+                <Icon size={28} className="text-adish-gold" />
+                <span className="text-sm font-semibold text-adish-dark">{label}</span>
+              </div>
+            ))}
+          </div>
 
+          {/* CTA */}
+          <Link href="/products" className="btn-primary inline-flex items-center gap-2 shadow-lg">
+            Shop now <ArrowRight size={20} />
+          </Link>
+
+          {/* Trust lines */}
+          <div className="flex items-center justify-center gap-6 mt-6 text-sm text-adish-green">
+            <span className="flex items-center gap-1.5"><Truck size={16} /> Free shipping</span>
+            <span className="flex items-center gap-1.5"><RotateCcw size={16} /> Easy returns</span>
           </div>
         </div>
       </section>
@@ -68,125 +70,45 @@ export default function Home() {
         <OffersBelt />
       </div>
 
-      {/* Product Showcase with Real Images */}
-      <section className="py-20 px-4 bg-yellow-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
-              Two Formats. One Philosophy.
-            </h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Choose your optimal delivery system for sustained botanical vitality
-            </p>
+      {/* OUR FORMULAS — product section */}
+      <section className="py-16 sm:py-20 px-4 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-center text-xs font-bold tracking-[0.2em] text-adish-gold uppercase mb-8">
+            Our Formulas
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            {homeCards.map((card) => {
+              const p = products.find((x) => x.id === card.id);
+              if (!p) return null;
+              return (
+                <ProductCard
+                  key={p.id}
+                  id={p.id}
+                  name={p.name}
+                  image={p.image}
+                  imageOverride={card.image}
+                  price={p.price}
+                  originalPrice={p.originalPrice}
+                  rating={p.rating ?? 0}
+                  reviewCount={p.reviewCount ?? 0}
+                  inStock={true}
+                  description={p.description}
+                  bullets={p.homeBullets}
+                  bulletIcon={card.icon}
+                  ctaLabel="Shop now"
+                  onAddToCart={() =>
+                    addToCart({ id: p.id, name: p.name, price: p.price, image: p.image })
+                  }
+                />
+              );
+            })}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Powder */}
-            <div className="bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all">
-              <Link href="/products/cordyceps-powder" className="h-64 bg-gray-100 overflow-hidden block cursor-pointer">
-                <img
-                  src="/images/products/powder.avif"
-                  alt="Cordyceps Potency Powder"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </Link>
-              <div className="p-8">
-                <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
-                  Cordyceps Potency Powder
-                </h3>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-start gap-3">
-                    <span className="text-yellow-600 text-lg font-bold">→</span>
-                    <div>
-                      <p className="font-bold text-gray-800">20-45 mins Absorption</p>
-                      <p className="text-sm text-gray-600">Gradual sustained release</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-yellow-600 text-lg font-bold">→</span>
-                    <div>
-                      <p className="font-bold text-gray-800">6-12 Months Shelf Life</p>
-                      <p className="text-sm text-gray-600">Long-term storage friendly</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-yellow-600 text-lg font-bold">→</span>
-                    <div>
-                      <p className="font-bold text-gray-800">Moderate Bioavailability</p>
-                      <p className="text-sm text-gray-600">Balanced absorption profile</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pt-6 border-t gap-4">
-                  <span className="text-3xl font-bold text-gray-900">₹1,000</span>
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => handleAddToCart('cordyceps-powder', 'Cordyceps Potency Powder', 1000, '/images/products/powder.avif')}
-                      className="bg-green-700 text-white px-4 py-3 rounded-lg font-bold hover:bg-green-800 transition text-sm"
-                    >
-                      Add to Cart
-                    </button>
-                    <Link href="/products/cordyceps-powder" className="bg-yellow-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-yellow-700 transition text-sm">
-                      Shop Now
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Tincture */}
-            <div style={{ background: 'linear-gradient(135deg, #e8dcc8 0%, #f5f1e8 100%)' }} className="border-2 border-yellow-600 rounded-lg overflow-hidden hover:shadow-lg transition-all">
-              <Link href="/products/performance-tincture" className="h-64 bg-gray-100 overflow-hidden block cursor-pointer">
-                <img
-                  src="/images/products/tincture-real.avif"
-                  alt="Cordyceps Endurance Tincture"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </Link>
-              <div className="p-8">
-                <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
-                  Cordyceps Endurance Tincture
-                </h3>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-start gap-3">
-                    <span className="text-yellow-600 text-lg font-bold">★</span>
-                    <div>
-                      <p className="font-bold text-gray-800">2-5 mins Absorption</p>
-                      <p className="text-sm text-gray-600">Rapid sublingual delivery</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-yellow-600 text-lg font-bold">★</span>
-                    <div>
-                      <p className="font-bold text-gray-800">3-5 Years Shelf Life</p>
-                      <p className="text-sm text-gray-600">Alcohol-preserved potency</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-yellow-600 text-lg font-bold">★</span>
-                    <div>
-                      <p className="font-bold text-gray-800">High Bioavailability</p>
-                      <p className="text-sm text-gray-600">Full-spectrum dual-extract</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pt-6 border-t border-yellow-600 border-opacity-30 gap-4">
-                  <span className="text-3xl font-bold text-gray-900">₹1,000</span>
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => handleAddToCart('performance-tincture', 'Cordyceps Endurance Tincture', 1000, '/images/products/tincture-real.avif')}
-                      className="bg-green-700 text-white px-4 py-3 rounded-lg font-bold hover:bg-green-800 transition text-sm"
-                    >
-                      Add to Cart
-                    </button>
-                    <Link href="/products/performance-tincture" className="bg-yellow-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-yellow-700 transition text-sm">
-                      Shop Now
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* FSSAI disclaimer */}
+          <p className="text-[11px] leading-relaxed text-center text-gray-400 mt-8 max-w-3xl mx-auto">
+            These statements have not been evaluated by FSSAI. This product is not intended to diagnose, treat, cure, or prevent any disease.
+          </p>
         </div>
       </section>
 

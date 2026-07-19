@@ -15,6 +15,7 @@ export interface Product {
   imageAlt: string;
   gallery?: string[];
   benefits: string[];
+  homeBullets?: { title: string; subtitle: string }[];
   ingredients?: string[];
   suitedFor?: string;
   howToUse?: string[];
@@ -52,6 +53,13 @@ export const products: Product[] = [
       "Enhances stamina and energy",
       "Supports cognitive clarity",
       "Immune system optimization",
+    ],
+    // Homepage "OUR FORMULAS" bullets (title + subtitle). Separate from `benefits`.
+    homeBullets: [
+      { title: "Physical", subtitle: "Enhanced stamina at mitochondrial level" },
+      { title: "Cognitive", subtitle: "Reduced cerebral oxidative stress, sustained focus" },
+      { title: "Systemic", subtitle: "Bidirectional immune regulation, metabolic support" },
+      { title: "Respiratory", subtitle: "Improved airway dilation and oxygen utilization" },
     ],
     // NOTE (Arata-style detail page): content below is reused from existing
     // product copy or derived strictly from facts already stated in this file.
@@ -143,6 +151,14 @@ Multi-System Benefits:
       "Full-spectrum dual-extract",
       "Adjustable dosing by drop",
       "3-5 years shelf life",
+    ],
+    // Homepage "OUR FORMULAS" bullets (title + subtitle). Separate from `benefits`.
+    homeBullets: [
+      { title: "Stamina", subtitle: "ATP synthesis without caffeine crash" },
+      { title: "Performance", subtitle: "VO2 max, lactate threshold, post-exercise recovery" },
+      { title: "Libido", subtitle: "Testosterone regulation, stress-induced hormonal balance" },
+      { title: "Clarity", subtitle: "Eliminates brain fog, sustains cognitive endurance" },
+      { title: "Focus", subtitle: "Deep work capability without stimulant jitters" },
     ],
     // NOTE: reused/derived from existing copy only — no new claims invented.
     gallery: [
