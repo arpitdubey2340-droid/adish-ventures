@@ -165,6 +165,8 @@ Multi-System Benefits:
       "/images/products/tincture-real.avif",
       "/images/products/tincture-lifestyle.avif",
       "/images/products/tincture-spoon.avif",
+      "/images/products/tincture-gallery-4.png",
+      "/images/products/tincture-gallery-5.png",
       "/images/products/tincture-dropper.avif",
       "/images/products/tincture-bottle.avif",
       "/images/products/tincture-back.avif",
