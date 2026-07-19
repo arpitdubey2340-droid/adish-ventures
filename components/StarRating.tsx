@@ -44,11 +44,11 @@ export default function StarRating({ rating, count, size = 'md', onClick }: Star
         {rating.toFixed(1)}
       </span>
 
-      {count && (
+      {count ? (
         <span className={`${textSize[size]} text-gray-600`}>
           ({count.toLocaleString()} reviews)
         </span>
-      )}
+      ) : null}
     </div>
   );
 }

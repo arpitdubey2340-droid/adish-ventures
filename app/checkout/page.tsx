@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { ChevronRight, ShoppingCart } from 'lucide-react';
 import Button from '@/components/Button';
 import Link from 'next/link';
 import { toast } from '@/components/Toast';
+import { clearCart } from '@/lib/cart';
 
 interface CartItem {
   id: string;
@@ -29,6 +31,7 @@ interface FormData {
 type CheckoutStep = 1 | 2 | 3;
 
 export default function Checkout() {
+  const router = useRouter();
   const [step, setStep] = useState<CheckoutStep>(1);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [shippingMethod, setShippingMethod] = useState('standard');
@@ -92,14 +95,37 @@ export default function Checkout() {
     }
   };
 
+  const validateBillingForm = () => {
+    const b = billingForm;
+    const ok =
+      !!b.firstName.trim() &&
+      !!b.lastName.trim() &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email) &&
+      /^\d{10}$/.test(b.phone) &&
+      !!b.address.trim() &&
+      !!b.city.trim() &&
+      !!b.state &&
+      /^\d{6}$/.test(b.postalCode);
+    setErrors((prev) => ({
+      ...prev,
+      billing: ok ? '' : 'Please complete all billing fields with valid details.',
+    }));
+    return ok;
+  };
+
   const handleContinueToStep3 = () => {
+    if (!sameAsShipping && !validateBillingForm()) {
+      window.scrollTo(0, 0);
+      return;
+    }
     setStep(3);
     window.scrollTo(0, 0);
   };
 
   const handlePlaceOrder = () => {
-    // TODO: Integrate with payment gateway (Razorpay is in package.json, not yet wired)
-    toast('Order submitted! Payment gateway integration coming soon.', 'success');
+    // TODO: Wire real payment (Razorpay is in package.json, not yet integrated).
+    // For now, complete the order flow: clear the cart and return home so the
+    // cart isn't left full after "placing" an order.
     console.log({
       shipping: shippingForm,
       billing: sameAsShipping ? shippingForm : billingForm,
@@ -108,6 +134,10 @@ export default function Checkout() {
       cart,
       total,
     });
+    clearCart();
+    setCart([]);
+    toast("Order placed! We'll be in touch. (Online payment coming soon.)", 'success');
+    router.push('/');
   };
 
   const applyPromoCode = () => {
@@ -123,10 +153,10 @@ export default function Checkout() {
     }
   };
 
+  // Free shipping is a site-wide promise (hero/trust badges), so the cart's
+  // "Free" and checkout always agree.
   const shippingCosts = {
     standard: 0,
-    express: 150,
-    overnight: 300,
   };
 
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -362,17 +392,68 @@ export default function Checkout() {
                         type="text"
                         value={billingForm.firstName}
                         onChange={(e) => setBillingForm({ ...billingForm, firstName: e.target.value })}
-                        placeholder="First Name"
+                        placeholder="First Name *"
                         className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-adish-gold focus:outline-none transition"
                       />
                       <input
                         type="text"
                         value={billingForm.lastName}
                         onChange={(e) => setBillingForm({ ...billingForm, lastName: e.target.value })}
-                        placeholder="Last Name"
+                        placeholder="Last Name *"
                         className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-adish-gold focus:outline-none transition"
                       />
                     </div>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <input
+                        type="email"
+                        value={billingForm.email}
+                        onChange={(e) => setBillingForm({ ...billingForm, email: e.target.value })}
+                        placeholder="Email *"
+                        className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-adish-gold focus:outline-none transition"
+                      />
+                      <input
+                        type="tel"
+                        value={billingForm.phone}
+                        onChange={(e) => setBillingForm({ ...billingForm, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
+                        placeholder="Phone *"
+                        className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-adish-gold focus:outline-none transition"
+                      />
+                    </div>
+                    <input
+                      type="text"
+                      value={billingForm.address}
+                      onChange={(e) => setBillingForm({ ...billingForm, address: e.target.value })}
+                      placeholder="Street Address *"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-adish-gold focus:outline-none transition"
+                    />
+                    <div className="grid sm:grid-cols-3 gap-4">
+                      <input
+                        type="text"
+                        value={billingForm.city}
+                        onChange={(e) => setBillingForm({ ...billingForm, city: e.target.value })}
+                        placeholder="City *"
+                        className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-adish-gold focus:outline-none transition"
+                      />
+                      <select
+                        value={billingForm.state}
+                        onChange={(e) => setBillingForm({ ...billingForm, state: e.target.value })}
+                        className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-adish-gold focus:outline-none transition"
+                      >
+                        <option value="">Select State *</option>
+                        <option value="MH">Maharashtra</option>
+                        <option value="DL">Delhi</option>
+                        <option value="BG">Bengal</option>
+                        <option value="KA">Karnataka</option>
+                      </select>
+                      <input
+                        type="text"
+                        value={billingForm.postalCode}
+                        onChange={(e) => setBillingForm({ ...billingForm, postalCode: e.target.value.replace(/\D/g, '').slice(0, 6) })}
+                        placeholder="Postal Code *"
+                        className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-adish-gold focus:outline-none transition"
+                      />
+                    </div>
+                    {errors.billing && <p className="text-red-600 text-sm">{errors.billing}</p>}
                   </div>
                 )}
 
@@ -408,8 +489,6 @@ export default function Checkout() {
                   <div className="space-y-3">
                     {[
                       { id: 'standard', label: 'Standard (5-7 days)', cost: 0 },
-                      { id: 'express', label: 'Express (2-3 days)', cost: 150 },
-                      { id: 'overnight', label: 'Overnight (Next day)', cost: 300 },
                     ].map((method) => (
                       <label key={method.id} className="flex items-center gap-3 cursor-pointer p-3 hover:bg-adish-beige rounded-lg transition">
                         <input

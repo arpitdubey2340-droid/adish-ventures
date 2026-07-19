@@ -48,14 +48,21 @@ export default function CartImproved() {
     const updatedItems = cartItems.map((item) =>
       item.id === itemId ? { ...item, quantity: newQuantity } : item
     );
+    const source = cartItems.find((item) => item.id === itemId);
     setCartItems(updatedItems);
     // Update localStorage
     const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
-    let quantityChange = newQuantity - (cartItems.find(item => item.id === itemId)?.quantity || 0);
+    let quantityChange = newQuantity - (source?.quantity || 0);
     if (quantityChange > 0) {
-      const itemToAdd = currentCart.find((item: any) => item.id === itemId);
-      for (let i = 0; i < quantityChange; i++) {
-        currentCart.push(itemToAdd);
+      // Template from an existing flat entry, falling back to the grouped item
+      // so we never push `undefined` into the cart.
+      const template =
+        currentCart.find((item: any) => item.id === itemId) ??
+        (source ? { id: source.id, name: source.name, price: source.price, image: source.image } : null);
+      if (template) {
+        for (let i = 0; i < quantityChange; i++) {
+          currentCart.push({ ...template });
+        }
       }
     } else {
       quantityChange = Math.abs(quantityChange);
@@ -67,6 +74,7 @@ export default function CartImproved() {
       }
     }
     localStorage.setItem('cart', JSON.stringify(currentCart));
+    window.dispatchEvent(new Event('storage'));
   };
 
   const removeItem = (itemId: string) => {
@@ -76,6 +84,7 @@ export default function CartImproved() {
     const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
     const newCart = currentCart.filter((item: any) => item.id !== itemId);
     localStorage.setItem('cart', JSON.stringify(newCart));
+    window.dispatchEvent(new Event('storage'));
   };
 
   const clearCart = () => {
@@ -149,18 +158,18 @@ export default function CartImproved() {
       name: 'Cordyceps Potency Powder',
       image: '/images/products/powder.avif',
       price: 1000,
-      rating: 4.9,
-      reviewCount: 147,
+      rating: 4.5,
+      reviewCount: 0,
       inStock: true,
       description: 'Premium powder for daily rituals',
     },
     {
-      id: 'cordyceps-tincture',
+      id: 'performance-tincture',
       name: 'Cordyceps Endurance Tincture',
       image: '/images/products/tincture-real.avif',
-      price: 1500,
-      rating: 4.8,
-      reviewCount: 100,
+      price: 1000,
+      rating: 4.5,
+      reviewCount: 0,
       inStock: true,
       description: 'Rapid absorption liquid extract',
     },

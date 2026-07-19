@@ -12,6 +12,7 @@ import { addToCart } from '@/lib/cart';
 import ImageGallery from '@/components/ImageGallery';
 import TrustBadge from '@/components/TrustBadge';
 import ProductCard from '@/components/ProductCard';
+import StarRating from '@/components/StarRating';
 import CertificationsSection from '@/components/CertificationsSection';
 
 const ICONS: Record<string, typeof Zap> = {
@@ -125,16 +126,10 @@ export default function ProductDetail({ product, related }: { product: Product; 
           <div className="w-full min-w-0">
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-adish-dark mb-3">{product.name}</h1>
 
-            {/* Rating -> reviews */}
+            {/* Rating -> reviews (shared StarRating; count hidden when 0) */}
             {product.rating != null && (
-              <a href="#reviews" className="inline-flex items-center gap-2 mb-4 no-underline hover:opacity-80">
-                <span className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={18} style={{ fill: i < Math.round(product.rating!) ? '#c9a84c' : '#e5e7eb', stroke: 'none' }} />
-                  ))}
-                </span>
-                <span className="text-adish-dark font-bold text-sm">{product.rating.toFixed(1)}</span>
-                <span className="text-gray-600 text-sm">({product.reviewCount?.toLocaleString() ?? 0} reviews)</span>
+              <a href="#reviews" className="inline-flex items-center mb-4 no-underline hover:opacity-80">
+                <StarRating rating={product.rating} count={product.reviewCount} size="md" />
               </a>
             )}
 

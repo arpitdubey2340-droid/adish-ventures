@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { addToCart } from '@/lib/cart';
 
 interface OfferItem {
   id: string;
@@ -13,8 +13,6 @@ interface OfferItem {
 }
 
 export default function OffersBelt() {
-  const router = useRouter();
-
   const offers: OfferItem[] = [
     { id: 'tincture-2pack', name: 'Tincture 2-Pack', price: 1800, type: 'tincture', quantity: 2, icon: '🍾' },
     { id: 'tincture-3pack', name: 'Tincture 3-Pack', price: 2499, type: 'tincture', quantity: 3, icon: '🍾' },
@@ -24,33 +22,14 @@ export default function OffersBelt() {
 
   const handleAddToCart = (e: React.MouseEvent, offer: OfferItem) => {
     e.stopPropagation();
-    try {
-      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-
-      // Get individual product price based on type and quantity
-      const singlePrice = offer.type === 'tincture' ? 1000 : 800;
-      const bundleDiscount = offer.quantity === 2 ? 0.9 : 0.85; // 10% off for 2-pack, 15% off for 3-pack
-      const pricePerItem = Math.round(singlePrice * bundleDiscount);
-
-      // Add individual items to cart based on quantity
-      for (let i = 0; i < offer.quantity; i++) {
-        cart.push({
-          id: `${offer.type}-${Date.now()}-${i}`,
-          name: offer.type === 'tincture' ? 'Cordyceps Endurance Tincture' : 'Cordyceps Extract Powder',
-          price: pricePerItem,
-          type: offer.type,
-          bundleType: offer.name,
-          addedAt: new Date().toISOString()
-        });
-      }
-
-      localStorage.setItem('cart', JSON.stringify(cart));
-      setTimeout(() => {
-        router.push('/cart');
-      }, 100);
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-    }
+    // Add the bundle as a single cart line at the exact advertised price.
+    // Uses the shared helper so it groups, carries an image, updates the nav
+    // badge, and opens the mini-cart — like every other add-to-cart on the site.
+    const image =
+      offer.type === 'tincture'
+        ? '/images/products/tincture-real.avif'
+        : '/images/products/powder.avif';
+    addToCart({ id: offer.id, name: offer.name, price: offer.price, image });
   };
 
   return (
