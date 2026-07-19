@@ -18,8 +18,19 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-adish-cream py-20 sm:py-28 px-4">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="relative overflow-hidden py-24 sm:py-36 px-4">
+        {/* Background image */}
+        <img
+          src="/images/sections/hero-cordyceps.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Contrast overlays for text readability */}
+        <div className="absolute inset-0 bg-black/55"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"></div>
+
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
           {/* Trust line — stars only, no fabricated review count */}
           <div className="flex items-center justify-center gap-2 mb-6">
             <span className="flex">
@@ -27,14 +38,20 @@ export default function Home() {
                 <Star key={i} size={18} style={{ fill: '#C8A854', stroke: 'none' }} />
               ))}
             </span>
-            <span className="text-sm font-semibold text-adish-dark">Trusted by early customers</span>
+            <span className="text-sm font-semibold text-yellow-50">Trusted by early customers</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-6xl font-serif font-bold text-adish-dark mb-4 tracking-tight">
+          <h1
+            className="text-4xl sm:text-6xl font-serif font-bold mb-4 tracking-tight"
+            style={{ color: '#ffffff', textShadow: '0 2px 12px rgba(0,0,0,0.75)' }}
+          >
             Cordyceps, done right.
           </h1>
-          <p className="text-lg sm:text-xl text-adish-green mb-10">
+          <p
+            className="text-lg sm:text-xl text-yellow-50 mb-10"
+            style={{ textShadow: '0 1px 6px rgba(0,0,0,0.65)' }}
+          >
             Sustained energy and endurance — without the crash.
           </p>
 
@@ -47,7 +64,7 @@ export default function Home() {
             ].map(({ Icon, label }) => (
               <div key={label} className="flex flex-col items-center gap-2">
                 <Icon size={28} className="text-adish-gold" />
-                <span className="text-sm font-semibold text-adish-dark">{label}</span>
+                <span className="text-sm font-semibold text-white">{label}</span>
               </div>
             ))}
           </div>
@@ -58,7 +75,7 @@ export default function Home() {
           </Link>
 
           {/* Trust lines */}
-          <div className="flex items-center justify-center gap-6 mt-6 text-sm text-adish-green">
+          <div className="flex items-center justify-center gap-6 mt-6 text-sm text-yellow-50">
             <span className="flex items-center gap-1.5"><Truck size={16} /> Free shipping</span>
             <span className="flex items-center gap-1.5"><RotateCcw size={16} /> Easy returns</span>
           </div>
