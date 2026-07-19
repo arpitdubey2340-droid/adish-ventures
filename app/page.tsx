@@ -83,7 +83,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Powder */}
             <div className="bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all">
-              <Link href="/products" className="h-64 bg-gray-100 overflow-hidden block cursor-pointer">
+              <Link href="/products/cordyceps-powder" className="h-64 bg-gray-100 overflow-hidden block cursor-pointer">
                 <img
                   src="/images/products/powder.avif"
                   alt="Cordyceps Potency Powder"
@@ -126,7 +126,7 @@ export default function Home() {
                     >
                       Add to Cart
                     </button>
-                    <Link href="/products" className="bg-yellow-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-yellow-700 transition text-sm">
+                    <Link href="/products/cordyceps-powder" className="bg-yellow-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-yellow-700 transition text-sm">
                       Shop Now
                     </Link>
                   </div>
@@ -136,7 +136,7 @@ export default function Home() {
 
             {/* Tincture */}
             <div style={{ background: 'linear-gradient(135deg, #e8dcc8 0%, #f5f1e8 100%)' }} className="border-2 border-yellow-600 rounded-lg overflow-hidden hover:shadow-lg transition-all">
-              <Link href="/products" className="h-64 bg-gray-100 overflow-hidden block cursor-pointer">
+              <Link href="/products/performance-tincture" className="h-64 bg-gray-100 overflow-hidden block cursor-pointer">
                 <img
                   src="/images/products/tincture-real.avif"
                   alt="Cordyceps Endurance Tincture"
@@ -179,7 +179,7 @@ export default function Home() {
                     >
                       Add to Cart
                     </button>
-                    <Link href="/products" className="bg-yellow-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-yellow-700 transition text-sm">
+                    <Link href="/products/performance-tincture" className="bg-yellow-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-yellow-700 transition text-sm">
                       Shop Now
                     </Link>
                   </div>

@@ -13,7 +13,13 @@ export interface Product {
   description: string;
   image: string;
   imageAlt: string;
+  gallery?: string[];
   benefits: string[];
+  ingredients?: string[];
+  suitedFor?: string;
+  howToUse?: string[];
+  faqs?: { question: string; answer: string }[];
+  highlights?: { icon: string; label: string }[];
   specs: {
     absorptionSpeed: string;
     bioavailability: string;
@@ -46,6 +52,54 @@ export const products: Product[] = [
       "Enhances stamina and energy",
       "Supports cognitive clarity",
       "Immune system optimization",
+    ],
+    // NOTE (Arata-style detail page): content below is reused from existing
+    // product copy or derived strictly from facts already stated in this file.
+    // No new health/efficacy claims were invented. Verify ingredient
+    // declarations against the actual label before treating as compliance copy.
+    gallery: [
+      "/images/products/powder.avif",
+      "/images/products/powder-lifestyle.avif",
+      "/images/products/powder-close.avif",
+      "/images/products/powder-mixed.avif",
+      "/images/products/powder-package.avif",
+      "/images/products/powder-spoon.avif",
+    ],
+    ingredients: [
+      "Cordyceps militaris fruiting body extract (100%)",
+      "Standardised to 30% beta-glucan",
+      "Net weight: 30 g",
+    ],
+    suitedFor:
+      "Best for a daily, sustained-energy ritual — active individuals and busy professionals who prefer a versatile powder they can mix into food and drinks.",
+    howToUse: [
+      "Start with 1 teaspoon, increasing gradually to 1-2 teaspoons daily.",
+      "Mix into water, coffee, smoothies, or tea.",
+      "Best taken with meals for optimal absorption.",
+      "Use consistently every day for best results.",
+    ],
+    highlights: [
+      { icon: "zap", label: "Cellular Energy" },
+      { icon: "shield", label: "Adaptogenic Balance" },
+      { icon: "leaf", label: "100% Fruiting Body" },
+      { icon: "flask", label: "Lab Tested" },
+    ],
+    faqs: [
+      {
+        question: "What's the difference between Powder and Tincture?",
+        answer:
+          "Powder absorbs in 20-45 mins with moderate bioavailability, giving a gradual sustained release. The Tincture absorbs in 2-5 mins via sublingual delivery. Choose powder for a food-based daily ritual.",
+      },
+      {
+        question: "How often should I take it?",
+        answer:
+          "The powder is designed as a daily ritual. Start with the recommended dose and adjust based on your response.",
+      },
+      {
+        question: "How should I store it?",
+        answer:
+          "Keep the powder in a cool, dry place. Shelf life is 6-12 months.",
+      },
     ],
     specs: {
       absorptionSpeed: "20-45 mins",
@@ -89,6 +143,51 @@ Multi-System Benefits:
       "Full-spectrum dual-extract",
       "Adjustable dosing by drop",
       "3-5 years shelf life",
+    ],
+    // NOTE: reused/derived from existing copy only — no new claims invented.
+    gallery: [
+      "/images/products/tincture-real.avif",
+      "/images/products/tincture-lifestyle.avif",
+      "/images/products/tincture-spoon.avif",
+      "/images/products/tincture-dropper.avif",
+      "/images/products/tincture-bottle.avif",
+      "/images/products/tincture-back.avif",
+    ],
+    ingredients: [
+      "Cordyceps militaris dual extract (1:10 fruiting body)",
+      "Alcohol-free formulation",
+      "Net volume: 30 ml",
+    ],
+    suitedFor:
+      "Best for rapid, on-the-go support — performance athletes and busy professionals who want fast sublingual absorption and drop-by-drop dosing.",
+    howToUse: [
+      "Shake well before use.",
+      "Place 10-20 drops under the tongue.",
+      "Hold for 30-60 seconds, then swallow.",
+      "Best on an empty stomach or as directed; adjust to your response.",
+    ],
+    highlights: [
+      { icon: "zap", label: "Rapid Absorption" },
+      { icon: "droplet", label: "Sublingual Delivery" },
+      { icon: "leaf", label: "Dual Extract" },
+      { icon: "flask", label: "Lab Tested" },
+    ],
+    faqs: [
+      {
+        question: "What's the difference between Tincture and Powder?",
+        answer:
+          "The Tincture absorbs in 2-5 mins with high bioavailability via sublingual delivery, bypassing digestion. Powder absorbs in 20-45 mins. Choose the tincture for rapid, precise dosing.",
+      },
+      {
+        question: "Is this suitable for athletes?",
+        answer:
+          "Yes. The Endurance Tincture is engineered for athletes seeking rapid absorption and drop-by-drop dosing without synthetic stimulants.",
+      },
+      {
+        question: "How should I store it?",
+        answer:
+          "Store away from direct sunlight in its dark bottle. Shelf life is 3-5 years with alcohol-free preservation.",
+      },
     ],
     specs: {
       absorptionSpeed: "2-5 mins",

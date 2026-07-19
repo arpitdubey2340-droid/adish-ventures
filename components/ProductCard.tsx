@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { ShoppingCart, Heart, Check } from 'lucide-react';
 import Button from './Button';
 import StarRating from './StarRating';
@@ -20,6 +21,7 @@ interface ProductCardProps {
   claim?: string;
   bestSeller?: boolean;
   freeShipping?: boolean;
+  href?: string; // when set, image + title link through to the detail page
   onAddToCart: () => void;
   onBuyNow?: () => void;
   variant?: 'grid' | 'featured'; // featured for homepage, grid for product listing
@@ -39,6 +41,7 @@ export default function ProductCard({
   claim,
   bestSeller,
   freeShipping,
+  href,
   onAddToCart,
   onBuyNow,
   variant = 'grid',
@@ -46,6 +49,10 @@ export default function ProductCard({
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [added, setAdded] = useState(false);
+
+  // Wrap children in a Link only when href is provided.
+  const Clickable = ({ className, children }: { className?: string; children: React.ReactNode }) =>
+    href ? <Link href={href} className={className}>{children}</Link> : <div className={className}>{children}</div>;
 
   const handleAddToCart = async () => {
     setIsAdding(true);
@@ -161,7 +168,7 @@ export default function ProductCard({
   // Grid product card (listing view)
   return (
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative h-48 bg-gray-100 overflow-hidden group">
+      <Clickable className="relative h-48 bg-gray-100 overflow-hidden group block">
         <img
           src={image}
           alt={name}
@@ -185,10 +192,12 @@ export default function ProductCard({
             -{discount}%
           </div>
         )}
-      </div>
+      </Clickable>
 
       <div className="p-3 sm:p-4">
-        <h3 className="text-sm sm:text-base font-bold text-adish-dark mb-1 line-clamp-1">{name}</h3>
+        <Clickable className="block hover:text-adish-gold transition-colors">
+          <h3 className="text-sm sm:text-base font-bold text-adish-dark mb-1 line-clamp-1">{name}</h3>
+        </Clickable>
 
         <div className="mb-2">
           <StarRating rating={rating} count={reviewCount} size="sm" />

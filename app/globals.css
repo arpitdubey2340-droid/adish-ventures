@@ -17,6 +17,22 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Register the adish-* palette as Tailwind v4 theme tokens so utility
+   classes (bg-adish-gold, text-adish-green, border-adish-beige, ...) generate.
+   Tailwind v4 does not auto-load tailwind.config.ts colors — without this,
+   every adish-* utility silently renders as transparent/inherited. */
+@theme {
+  --color-adish-dark: #1B4D3E;
+  --color-adish-green: #2D5A45;
+  --color-adish-light: #3d7a5f;
+  --color-adish-forest: #1B4D3E;
+  --color-adish-gold: #C8A854;
+  --color-adish-light-gold: #D4AF57;
+  --color-adish-beige: #F5F1E8;
+  --color-adish-cream: #F3F1ED;
+  --color-adish-text: #1a1a1a;
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
